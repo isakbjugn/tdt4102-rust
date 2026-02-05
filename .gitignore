@@ -1,0 +1,6 @@
+# Kompilerte binærfiler
+main
+*.out
+
+# Debug-symboler (macOS)
+*.dSYM/

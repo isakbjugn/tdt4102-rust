@@ -4,22 +4,17 @@
     {
       "label": "build",
       "type": "shell",
-      "command": "clang++ -std=c++20 -g -Wall -Wextra main.cpp -o main",
-      "group": "build",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
+      "command": "clang++ -std=c++20 -g -Wall -Wextra ${file} -o ${fileDirname}/${fileBasenameNoExtension}",
+      "group": "build"
+    
     },
     {
       "label": "build & run",
       "type": "shell",
-      "command": "clang++ -std=c++20 -Wall -Wextra main.cpp -o main && ./main",
+      "command": "clang++ -std=c++20 -Wall -Wextra ${file} -o ${fileDirname}/${fileBasenameNoExtension} && ${fileDirname}/${fileBasenameNoExtension}",
       "group": {
         "kind": "build",
         "isDefault": true
-      },
-      "options": {
-        "cwd": "${workspaceFolder}"
       }
     }
   ]

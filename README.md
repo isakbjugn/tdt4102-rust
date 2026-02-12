@@ -1,6 +1,6 @@
 # fagdag-cpp
 
-Et undervisningsprosjekt som samanliknar C++ og Rust, bygd som ein [mdBook](https://rust-lang.github.io/mdBook/).
+Et undervisningsprosjekt som sammenlikner C++ og Rust, bygd som en [mdBook](https://rust-lang.github.io/mdBook/).
 
 ## Kom i gang
 
@@ -15,18 +15,18 @@ Et undervisningsprosjekt som samanliknar C++ og Rust, bygd som ein [mdBook](http
 cargo install mdbook
 ```
 
-### Vis boka
+### Vis boken
 
 ```bash
 mdbook serve --open
 ```
 
-### Bygg og køyr kodeeksempla
+### Bygg og kjør kodeeksemplene
 
 **C++:**
 
 ```bash
-clang++ -std=c++20 code/minnehandtering/main.cpp -o main && ./main
+clang++ -std=c++20 cpp/minnehandtering/main.cpp -o main && ./main
 ```
 
 **Rust:**
@@ -39,11 +39,11 @@ cd rust && cargo run
 
 ```
 ├── book.toml              # mdBook-konfigurasjon
-├── src/                   # mdBook markdown-kjelder
+├── src/                   # mdBook markdown-kilder
 │   ├── SUMMARY.md
 │   ├── introduksjon.md
 │   └── minnehandtering/
-├── code/                  # Kjørbar demokode
+├── cpp/                   # C++-kode
 │   └── minnehandtering/
 └── rust/                  # Rust Cargo-prosjekt
     ├── Cargo.toml

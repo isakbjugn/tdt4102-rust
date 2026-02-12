@@ -1,5 +1,5 @@
-# Innhald
+# Innhold
 
 - [Introduksjon](./introduksjon.md)
-- [Minnehåndtering](./minnehandtering/TEORI.md)
-    - [Oppgaver](./minnehandtering/OPPGAVER.md)
+- [Minnehåndtering](./minnehandtering/teori.md)
+    - [Oppgaver](./minnehandtering/oppgaver.md)

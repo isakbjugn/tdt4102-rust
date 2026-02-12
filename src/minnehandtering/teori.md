@@ -10,7 +10,7 @@ I C++ har du direkte kontroll over minneallokering og -frigjøring. Dette gir fl
 ## `new` og `delete`
 
 ```cpp
-{{#include ../../code/minnehandtering/main.cpp:enkel_allokering}}
+{{#include ../../cpp/minnehandtering/main.cpp:enkel_allokering}}
 ```
 
 ## `new[]` og `delete[]`
@@ -55,7 +55,7 @@ Det siste punktet er viktig: kompilatoren har lov til å resonnere "denne koden 
 Koden som demonstrerer use-after-free:
 
 ```cpp
-{{#include ../../code/minnehandtering/main.cpp:use_after_free}}
+{{#include ../../cpp/minnehandtering/main.cpp:use_after_free}}
 ```
 
 ## Address Sanitizer
@@ -63,7 +63,7 @@ Koden som demonstrerer use-after-free:
 For å fange minnefeil i C++ kan du bruke Address Sanitizer (ASan):
 
 ```bash
-clang++ -std=c++20 -fsanitize=address -g code/minnehandtering/main.cpp -o main && ./main
+clang++ -std=c++20 -fsanitize=address -g cpp/minnehandtering/main.cpp -o main && ./main
 ```
 
 ASan gir tydelige feilmeldinger for use-after-free, buffer overflow, og andre minnefeil - men kun ved kjøretid, ikke kompilering.
@@ -79,30 +79,30 @@ ASan gir tydelige feilmeldinger for use-after-free, buffer overflow, og andre mi
 
 ### Copy-semantikk i Rust
 
-Primitive typar som `i32` implementerer `Copy` og blir automatisk kopierte:
+Primitive typer som `i32` implementerer `Copy` og blir automatisk kopiert:
 
 ```rust
-{{#include ../../code/minnehandtering/main.rs:copy_semantikk}}
+{{#include ../../rust/src/minnehandtering/mod.rs:copy_semantikk}}
 ```
 
 Kopiering fungerer også ved funksjonskall:
 
 ```rust
-{{#include ../../code/minnehandtering/main.rs:copy_funksjon}}
+{{#include ../../rust/src/minnehandtering/mod.rs:copy_funksjon}}
 ```
 
 ### Move-semantikk i Rust
 
-Heap-allokerte typar som `String` blir *flytta* ved tilordning:
+Heap-allokerte typer som `String` blir *flyttet* ved tilordning:
 
 ```rust
-{{#include ../../code/minnehandtering/main.rs:move_semantikk}}
+{{#include ../../rust/src/minnehandtering/mod.rs:move_semantikk}}
 ```
 
-Det same gjeld ved funksjonskall:
+Det samme gjelder ved funksjonskall:
 
 ```rust
-{{#include ../../code/minnehandtering/main.rs:move_funksjon}}
+{{#include ../../rust/src/minnehandtering/mod.rs:move_funksjon}}
 ```
 
-Rust sin kompilator fangar desse feila *før* programmet køyrer - i motsetnad til C++, der dei gir udefinert oppførsel ved køyretid.
+Rusts kompilator fanger disse feilene *før* programmet kjører - i motsetning til C++, der de gir udefinert oppførsel ved kjøretid.

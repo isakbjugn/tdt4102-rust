@@ -4,3 +4,11 @@ main
 
 # Debug-symboler (macOS)
 *.dSYM/
+
+
+# Added by cargo
+
+/target
+
+# IntelliJ IDEA
+.idea

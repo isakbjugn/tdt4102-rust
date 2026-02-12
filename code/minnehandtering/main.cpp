@@ -1,13 +1,15 @@
 #include <iostream>
 
 int main() {
-    // Eksempel 1: Enkel new/delete
+    // ANCHOR: enkel_allokering
     int* p = new int(42);
     std::cout << "Verdien av p er: " << *p << std::endl;
-
     delete p;
+    // ANCHOR_END: enkel_allokering
 
-    std::cout << "Verdien av p er: " << *p << std::endl;
+    // ANCHOR: use_after_free
+    std::cout << "Verdien av p er: " << *p << std::endl; // UB!
+    // ANCHOR_END: use_after_free
 
     // Eksempel 2: Arrays med new[]/delete[]
 

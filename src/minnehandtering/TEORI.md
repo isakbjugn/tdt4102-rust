@@ -10,9 +10,7 @@ I C++ har du direkte kontroll over minneallokering og -frigjøring. Dette gir fl
 ## `new` og `delete`
 
 ```cpp
-int* p = new int(42);   // Allokerer på heap
-// ... bruk p ...
-delete p;               // Frigjør minnet
+{{#include ../../code/minnehandtering/main.cpp:enkel_allokering}}
 ```
 
 ## `new[]` og `delete[]`
@@ -54,12 +52,18 @@ Det siste punktet er viktig: kompilatoren har lov til å resonnere "denne koden 
 
 **Du kan ikke stole på noe etter UB, ikke engang at programmet krasjer forutsigbart.**
 
+Koden som demonstrerer use-after-free:
+
+```cpp
+{{#include ../../code/minnehandtering/main.cpp:use_after_free}}
+```
+
 ## Address Sanitizer
 
 For å fange minnefeil i C++ kan du bruke Address Sanitizer (ASan):
 
 ```bash
-clang++ -std=c++20 -fsanitize=address -g main.cpp -o main && ./main
+clang++ -std=c++20 -fsanitize=address -g code/minnehandtering/main.cpp -o main && ./main
 ```
 
 ASan gir tydelige feilmeldinger for use-after-free, buffer overflow, og andre minnefeil - men kun ved kjøretid, ikke kompilering.
@@ -72,3 +76,33 @@ ASan gir tydelige feilmeldinger for use-after-free, buffer overflow, og andre mi
 | `delete p` | Automatisk ved scope-slutt |
 | Minnelekkasje mulig | Umulig (uten `unsafe`) |
 | Use after free mulig | Kompileringsfeil |
+
+### Copy-semantikk i Rust
+
+Primitive typar som `i32` implementerer `Copy` og blir automatisk kopierte:
+
+```rust
+{{#include ../../code/minnehandtering/main.rs:copy_semantikk}}
+```
+
+Kopiering fungerer også ved funksjonskall:
+
+```rust
+{{#include ../../code/minnehandtering/main.rs:copy_funksjon}}
+```
+
+### Move-semantikk i Rust
+
+Heap-allokerte typar som `String` blir *flytta* ved tilordning:
+
+```rust
+{{#include ../../code/minnehandtering/main.rs:move_semantikk}}
+```
+
+Det same gjeld ved funksjonskall:
+
+```rust
+{{#include ../../code/minnehandtering/main.rs:move_funksjon}}
+```
+
+Rust sin kompilator fangar desse feila *før* programmet køyrer - i motsetnad til C++, der dei gir udefinert oppførsel ved køyretid.

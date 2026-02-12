@@ -7,8 +7,10 @@ main
 
 
 # Added by cargo
+/rust/target
 
-/target
+# mdBook output
+/book
 
 # IntelliJ IDEA
 .idea

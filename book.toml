@@ -1,0 +1,6 @@
+[book]
+language = "no"
+title = "C++ og Rust: Ein sammenlikning"
+
+[build]
+build-dir = "book"

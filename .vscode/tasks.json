@@ -6,7 +6,6 @@
       "type": "shell",
       "command": "clang++ -std=c++20 -g -Wall -Wextra ${file} -o ${fileDirname}/${fileBasenameNoExtension}",
       "group": "build"
-    
     },
     {
       "label": "build & run",
@@ -16,6 +15,24 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "label": "cargo build",
+      "type": "shell",
+      "command": "cargo build",
+      "options": {
+        "cwd": "${workspaceFolder}/rust"
+      },
+      "group": "build"
+    },
+    {
+      "label": "cargo run",
+      "type": "shell",
+      "command": "cargo run",
+      "options": {
+        "cwd": "${workspaceFolder}/rust"
+      },
+      "group": "build"
     }
   ]
 }

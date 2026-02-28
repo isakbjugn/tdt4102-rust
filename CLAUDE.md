@@ -15,11 +15,12 @@ Boka er rettet mot studenter som kan C++ og skal lære Rust. Hold forklaringer o
 ## Bygg- og kjørekommandoer
 
 ```bash
-# Kjør mdBook lokalt (installer med: cargo install mdbook)
-mdbook serve --open
+# Kjør mdBook lokalt (bruker mdbook 0.4.x for kompatibilitet med mdbook-lang)
+mdbook-lang server start   # start C++-kompileringsserver
+mdbook-04 serve --open
 
 # Bygg mdBook
-mdbook build
+mdbook-04 build
 
 # Bygg og kjør Rust-eksempler
 cd rust && cargo run

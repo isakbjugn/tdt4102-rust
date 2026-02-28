@@ -9,16 +9,25 @@ Et undervisningsprosjekt som sammenlikner C++ og Rust, bygd som en [mdBook](http
 - [Rust toolchain](https://rustup.rs/) (for mdBook og Rust-eksempel)
 - C++20-kompilator (clang++ eller g++)
 
-### Installer mdBook
+### Installer mdBook og mdbook-lang
 
 ```bash
-cargo install mdbook
+cargo install mdbook --version 0.4.51
+cargo install mdbook-lang
+```
+
+Dersom du har en nyere versjon av mdBook installert globalt, kan du kopiere 0.4-binæren til et eget navn:
+
+```bash
+cp ~/.cargo/bin/mdbook ~/.cargo/bin/mdbook-04
+cargo install mdbook  # installer nyeste tilbake
 ```
 
 ### Vis boken
 
 ```bash
-mdbook serve --open
+mdbook-lang server start   # start C++-kompileringsserver
+mdbook-04 serve --open     # eller mdbook serve om du bare har 0.4.x
 ```
 
 ### Bygg og kjør kodeeksemplene

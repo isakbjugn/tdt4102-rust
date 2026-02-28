@@ -109,7 +109,9 @@ fn function_that_moves(string: String) {
     println!("Den innsendte variablen har verdien {}", string);
 }
 
+fn main() {
 {{#include ../../rust/src/minnehandtering/mod.rs:move_funksjon}}
+}
 ```
 
 Rusts kompilator fanger disse feilene *før* programmet kjører - i motsetning til C++, der de gir udefinert oppførsel ved kjøretid.

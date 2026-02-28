@@ -88,6 +88,9 @@ Primitive typer som `i32` implementerer `Copy` og blir automatisk kopiert:
 Kopiering fungerer også ved funksjonskall:
 
 ```rust
+# fn function_that_copies(value: i32) {
+#     println!("Den innsendte variablen har verdien {}", value);
+# }
 {{#include ../../rust/src/minnehandtering/mod.rs:copy_funksjon}}
 ```
 
@@ -102,7 +105,21 @@ Heap-allokerte typer som `String` blir *flyttet* ved tilordning:
 Det samme gjelder ved funksjonskall:
 
 ```rust
+# fn function_that_moves(string: String) {
+#     println!("Den innsendte variablen har verdien {}", string);
+# }
 {{#include ../../rust/src/minnehandtering/mod.rs:move_funksjon}}
+```
+
+Hvis vi prøver å bruke `c_string` etter at den er flyttet, får vi en kompileringsfeil:
+
+```rust,compile_fail
+#   fn function_that_moves(string: String) {
+#       println!("Den innsendte variablen har verdien {}", string);
+#   }
+    let c_string = String::from("Nok en fin streng!");
+    function_that_moves(c_string);
+    println!("{c_string}"); // Kompileringsfeil! Verdien er flyttet.
 ```
 
 Rusts kompilator fanger disse feilene *før* programmet kjører - i motsetning til C++, der de gir udefinert oppførsel ved kjøretid.

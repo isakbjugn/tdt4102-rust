@@ -88,6 +88,9 @@ Primitive typer som `i32` implementerer `Copy` og blir automatisk kopiert:
 Kopiering fungerer også ved funksjonskall:
 
 ```rust
+# fn function_that_copies(value: i32) {
+#     println!("Den innsendte variablen har verdien {}", value);
+# }
 {{#include ../../rust/src/minnehandtering/mod.rs:copy_funksjon}}
 ```
 
@@ -102,6 +105,9 @@ Heap-allokerte typer som `String` blir *flyttet* ved tilordning:
 Det samme gjelder ved funksjonskall:
 
 ```rust
+# fn function_that_moves(string: String) {
+#     println!("Den innsendte variablen har verdien {}", string);
+# }
 {{#include ../../rust/src/minnehandtering/mod.rs:move_funksjon}}
 ```
 

@@ -8,6 +8,10 @@ Brukeren skriver alltid på norsk (bokmål). Svar på norsk (bokmål).
 
 Undervisningsprosjekt som sammenligner C++ og Rust på tvers av konsepter som minnehåndtering, smartpekere, RAII, livstider og move-semantikk. Bygd som en mdBook for TDT4102-kurset (NTNU). Boka er skrevet på norsk. Innhold ligger i markdown under `src/`, med tilhørende kode i `cpp/` og `rust/`.
 
+## Målgruppe og tone
+
+Boka er rettet mot studenter som kan C++ og skal lære Rust. Hold forklaringer og kodekommentarer på et pedagogisk nivå — tydelig og tilgjengelig, uten å overforenkle.
+
 ## Bygg- og kjørekommandoer
 
 ```bash

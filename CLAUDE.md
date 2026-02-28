@@ -35,6 +35,12 @@ clang++ -std=c++20 cpp/minnehandtering/main.cpp -o main && ./main
 
 Rust-kildefiler bruker `// ANCHOR:` og `// ANCHOR_END:`-kommentarer for å markere koderegioner som blir inkludert i mdBook via `{{#rustdoc_include}}`-direktiv. Ta vare på disse ankerne ved redigering av Rust-kode, og hold ankernavnene i synk med markdown-filene som refererer til dem.
 
+## Git-arbeidsmåte
+
+- Ikke lag commits — brukeren committer selv.
+- Ved stegvise planer: stans mellom hvert steg slik at brukeren kan committe.
+- PR-er trenger ikke testplan.
+
 ## Utrulling
 
 GitHub Actions (`.github/workflows/mdbook.yml`) bygger mdBook og deployer til GitHub Pages ved hvert push til `main`.

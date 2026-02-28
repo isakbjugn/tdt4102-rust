@@ -2,37 +2,39 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Overview
+Brukeren skriver alltid på norsk. Svar på norsk.
 
-Educational project comparing C++ and Rust memory management, built as an mdBook for the TDT4102 course (NTNU). The book is written in Norwegian. Content lives in markdown under `src/`, with companion code in `cpp/` and `rust/`.
+## Prosjektoversikt
 
-## Build & Run Commands
+Undervisningsprosjekt som samanliknar minnehandtering i C++ og Rust, bygd som ein mdBook for TDT4102-kurset (NTNU). Boka er skriven på norsk. Innhald ligg i markdown under `src/`, med tilhøyrande kode i `cpp/` og `rust/`.
+
+## Bygg- og køyrkommandoar
 
 ```bash
-# Serve the mdBook locally (install with: cargo install mdbook)
+# Køyr mdBook lokalt (installer med: cargo install mdbook)
 mdbook serve --open
 
-# Build the mdBook
+# Bygg mdBook
 mdbook build
 
-# Build and run Rust examples
+# Bygg og køyr Rust-eksempel
 cd rust && cargo run
 
-# Build and run C++ examples (requires C++20 compiler)
+# Bygg og køyr C++-eksempel (krev C++20-kompilator)
 clang++ -std=c++20 cpp/minnehandtering/main.cpp -o main && ./main
 ```
 
-## Architecture
+## Arkitektur
 
-- **`src/`** — mdBook markdown sources. `SUMMARY.md` defines the table of contents. Each concept has a `teori.md` (theory) and `oppgaver.md` (exercises).
-- **`rust/`** — Cargo project (edition 2024). Modules mirror the book's concept structure (e.g., `src/minnehandtering/`).
-- **`cpp/`** — Standalone C++ example files, one per concept directory.
-- **`book.toml`** — mdBook configuration. Build output goes to `book/`.
+- **`src/`** — mdBook-kjelder i markdown. `SUMMARY.md` definerer innhaldslista. Kvart konsept har `teori.md` (teori) og `oppgaver.md` (oppgåver).
+- **`rust/`** — Cargo-prosjekt (edition 2024). Modular speglar bokstrukturen (t.d. `src/minnehandtering/`).
+- **`cpp/`** — Frittståande C++-eksempelfiler, éin per konseptmappe.
+- **`book.toml`** — mdBook-konfigurasjon. Byggutdata går til `book/`.
 
-## Code Anchors
+## Kodeankre
 
-Rust source files use `// ANCHOR:` and `// ANCHOR_END:` comments to mark code regions that get embedded into the mdBook via `{{#rustdoc_include}}` directives. Preserve these anchors when editing Rust code, and keep the anchor names in sync with the markdown files that reference them.
+Rust-kjeldefiler brukar `// ANCHOR:` og `// ANCHOR_END:`-kommentarar for å markere koderegionar som blir inkluderte i mdBook via `{{#rustdoc_include}}`-direktiv. Ta vare på desse ankra ved redigering av Rust-kode, og hald ankernamna i synk med markdown-filene som refererer til dei.
 
-## Deployment
+## Utrulling
 
-GitHub Actions (`.github/workflows/mdbook.yml`) builds the mdBook and deploys to GitHub Pages on every push to `main`.
+GitHub Actions (`.github/workflows/mdbook.yml`) byggjer mdBook og deployer til GitHub Pages ved kvart push til `main`.

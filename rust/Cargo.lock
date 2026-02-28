@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "fagdag-cpp"
+name = "tdt4102-rust"
 version = "0.1.0"

@@ -6,7 +6,7 @@ Brukeren skriver alltid på norsk (bokmål). Svar på norsk (bokmål).
 
 ## Prosjektoversikt
 
-Undervisningsprosjekt som sammenligner minnehåndtering i C++ og Rust, bygd som en mdBook for TDT4102-kurset (NTNU). Boka er skrevet på norsk. Innhold ligger i markdown under `src/`, med tilhørende kode i `cpp/` og `rust/`.
+Undervisningsprosjekt som sammenligner C++ og Rust på tvers av konsepter som minnehåndtering, smartpekere, RAII, livstider og move-semantikk. Bygd som en mdBook for TDT4102-kurset (NTNU). Boka er skrevet på norsk. Innhold ligger i markdown under `src/`, med tilhørende kode i `cpp/` og `rust/`.
 
 ## Bygg- og kjørekommandoer
 

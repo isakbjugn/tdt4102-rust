@@ -104,10 +104,11 @@ Heap-allokerte typer som `String` blir *flyttet* ved tilordning:
 
 Det samme gjelder ved funksjonskall:
 
-```rust
-# fn function_that_moves(string: String) {
-#     println!("Den innsendte variablen har verdien {}", string);
-# }
+```rust,editable
+fn function_that_moves(string: String) {
+    println!("Den innsendte variablen har verdien {}", string);
+}
+
 {{#include ../../rust/src/minnehandtering/mod.rs:move_funksjon}}
 ```
 

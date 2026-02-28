@@ -4,3 +4,6 @@ title = "C++ og Rust: En sammenlikning"
 
 [build]
 build-dir = "book"
+
+[output.html.playground]
+editable = true

@@ -105,13 +105,7 @@ Heap-allokerte typer som `String` blir *flyttet* ved tilordning:
 Det samme gjelder ved funksjonskall:
 
 ```rust,editable
-fn function_that_moves(string: String) {
-    println!("Den innsendte variablen har verdien {}", string);
-}
-
-fn main() {
-{{#include ../../rust/src/minnehandtering/mod.rs:move_funksjon}}
-}
+{{#include ../../rust/src/minnehandtering/examples/move_funksjon.rs}}
 ```
 
 Rusts kompilator fanger disse feilene *før* programmet kjører - i motsetning til C++, der de gir udefinert oppførsel ved kjøretid.

@@ -2,39 +2,39 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Brukeren skriver alltid på norsk. Svar på norsk.
+Brukeren skriver alltid på norsk (bokmål). Svar på norsk (bokmål).
 
 ## Prosjektoversikt
 
-Undervisningsprosjekt som samanliknar minnehandtering i C++ og Rust, bygd som ein mdBook for TDT4102-kurset (NTNU). Boka er skriven på norsk. Innhald ligg i markdown under `src/`, med tilhøyrande kode i `cpp/` og `rust/`.
+Undervisningsprosjekt som sammenligner minnehåndtering i C++ og Rust, bygd som en mdBook for TDT4102-kurset (NTNU). Boka er skrevet på norsk. Innhold ligger i markdown under `src/`, med tilhørende kode i `cpp/` og `rust/`.
 
-## Bygg- og køyrkommandoar
+## Bygg- og kjørekommandoer
 
 ```bash
-# Køyr mdBook lokalt (installer med: cargo install mdbook)
+# Kjør mdBook lokalt (installer med: cargo install mdbook)
 mdbook serve --open
 
 # Bygg mdBook
 mdbook build
 
-# Bygg og køyr Rust-eksempel
+# Bygg og kjør Rust-eksempler
 cd rust && cargo run
 
-# Bygg og køyr C++-eksempel (krev C++20-kompilator)
+# Bygg og kjør C++-eksempler (krever C++20-kompilator)
 clang++ -std=c++20 cpp/minnehandtering/main.cpp -o main && ./main
 ```
 
 ## Arkitektur
 
-- **`src/`** — mdBook-kjelder i markdown. `SUMMARY.md` definerer innhaldslista. Kvart konsept har `teori.md` (teori) og `oppgaver.md` (oppgåver).
-- **`rust/`** — Cargo-prosjekt (edition 2024). Modular speglar bokstrukturen (t.d. `src/minnehandtering/`).
-- **`cpp/`** — Frittståande C++-eksempelfiler, éin per konseptmappe.
+- **`src/`** — mdBook-kilder i markdown. `SUMMARY.md` definerer innholdslisten. Hvert konsept har `teori.md` (teori) og `oppgaver.md` (oppgaver).
+- **`rust/`** — Cargo-prosjekt (edition 2024). Moduler speiler bokstrukturen (f.eks. `src/minnehandtering/`).
+- **`cpp/`** — Frittstående C++-eksempelfiler, én per konseptmappe.
 - **`book.toml`** — mdBook-konfigurasjon. Byggutdata går til `book/`.
 
-## Kodeankre
+## Kodeankere
 
-Rust-kjeldefiler brukar `// ANCHOR:` og `// ANCHOR_END:`-kommentarar for å markere koderegionar som blir inkluderte i mdBook via `{{#rustdoc_include}}`-direktiv. Ta vare på desse ankra ved redigering av Rust-kode, og hald ankernamna i synk med markdown-filene som refererer til dei.
+Rust-kildefiler bruker `// ANCHOR:` og `// ANCHOR_END:`-kommentarer for å markere koderegioner som blir inkludert i mdBook via `{{#rustdoc_include}}`-direktiv. Ta vare på disse ankerne ved redigering av Rust-kode, og hold ankernavnene i synk med markdown-filene som refererer til dem.
 
 ## Utrulling
 
-GitHub Actions (`.github/workflows/mdbook.yml`) byggjer mdBook og deployer til GitHub Pages ved kvart push til `main`.
+GitHub Actions (`.github/workflows/mdbook.yml`) bygger mdBook og deployer til GitHub Pages ved hvert push til `main`.

@@ -2,6 +2,10 @@
 main
 *.out
 
+# Genererte filer fra eksempler
+cpp/raii/*.txt
+cpp/raii/*.log
+
 # Debug-symboler (macOS)
 *.dSYM/
 

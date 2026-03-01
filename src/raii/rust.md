@@ -87,16 +87,6 @@ Akkurat som i C++ droppes lokale variabler i *omvendt* deklarasjonsrekkefølge (
 {{#include ../../rust/src/raii/mod.rs:raii_drop_rekkefolge}}
 ```
 
-Utskrift:
-```text
-  Oppretter: A
-  Oppretter: B
-  Oppretter: C
-  Frigjør:   C
-  Frigjør:   B
-  Frigjør:   A
-```
-
 ## Eksplisitt tidlig frigjøring med `drop()`
 
 Noen ganger vil du frigjøre en ressurs *før* scopet slutter — for eksempel slippe en lås tidlig. Rust lar deg gjøre dette med `std::mem::drop()`:
@@ -115,16 +105,6 @@ Noen ganger vil du frigjøre en ressurs *før* scopet slutter — for eksempel s
 #     }
 # }
 {{#include ../../rust/src/raii/mod.rs:raii_tidlig_drop}}
-```
-
-Utskrift:
-```text
-  Oppretter: X
-  Oppretter: Y
-  Før drop
-  Frigjør:   X
-  Etter drop
-  Frigjør:   Y
 ```
 
 `drop()` tar eierskap over verdien, og kompilatoren nekter deg å bruke den etterpå. Dette er en viktig forskjell fra C++, der du teknisk sett *kan* kalle en destruktør manuelt og deretter fortsette å bruke objektet — noe som gir [udefinert oppførsel](../ordliste.md#udefinert-oppforsel).

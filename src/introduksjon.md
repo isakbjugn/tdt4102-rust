@@ -10,7 +10,6 @@ Prosjektet tar for seg sentrale konsepter i C++:
 - **Smartpekere** - `unique_ptr`, `shared_ptr`, `weak_ptr` vs. Rusts `Box`, `Rc`, `Arc`
 - **RAII** - Resource Acquisition Is Initialization, et mønster begge språk bygger på
 - **Levetider** - implisitte i C++, eksplisitte i Rust
-- **Move-semantikk** - `std::move` i C++ vs. move-by-default i Rust
 
 ## Sammenlikning
 

@@ -8,13 +8,13 @@ I Rust er [eierskapsmodellen](../ordliste.md#eierskap) innebygd i språket. Vanl
 
 | C++ | Rust | Merknad |
 |-----|------|---------|
-| `unique_ptr<T>` | *(innebygd i eierskapsmodellen)* | Enhver `T`-verdi i Rust har eksklusivt eierskap og automatisk frigjøring |
-| *(heap-allokering + eksklusivt eierskap)* | `Box<T>` | Brukes når du eksplisitt trenger heap, f.eks. rekursive typer eller store verdier |
+| `unique_ptr<T>` *(sikker eierskap)* | *(innebygd i eierskapsmodellen)* | Enhver variabel i Rust har eksklusivt eierskap med automatisk frigjøring |
+| `unique_ptr<T>` *(heap-allokering)* | `Box<T>` | Brukes når du eksplisitt trenger heap, f.eks. rekursive typer eller store verdier |
 | `shared_ptr<T>` | `Rc<T>` / `Arc<T>` | Delt eierskap med [referansetelling](../ordliste.md#referansetelling) |
 | `weak_ptr<T>` | `Weak<T>` | Svak referanse, bryte sykluser |
 | *(ingen direkte ekvivalent)* | `RefCell<T>` | [Indre mutabilitet](../ordliste.md#indre-mutabilitet) |
 
-Med andre ord: `unique_ptr` og `Box<T>` er *ikke* direkte motparter. `unique_ptr` gjør C++-pekere trygge; `Box<T>` tvinger en verdi over på heapen. I Rust trenger du ikke en smartpeker for å oppnå sikker, eksklusiv eierskap — det er standardoppførselen.
+I C++ dekker `unique_ptr` altså to roller samtidig — sikker eierskap og heap-allokering — mens Rust deler dette i to: eierskapsmodellen (innebygd) og `Box<T>` (eksplisitt heap).
 
 ## Hva C++ kan lære av Rust
 

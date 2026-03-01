@@ -5,6 +5,8 @@ main
 # Genererte filer fra eksempler
 cpp/raii/*.txt
 cpp/raii/*.log
+rust/src/raii/*.txt
+rust/src/raii/*.log
 
 # Debug-symboler (macOS)
 *.dSYM/

@@ -9,7 +9,7 @@ Prosjektet tar for seg sentrale konsepter i C++:
 - **Minnehåndtering** - manuell [allokering](./ordliste.md#allokering) med `new`/`delete` vs. Rusts [eierskap-modell](./ordliste.md#eierskap)
 - **Smartpekere** - `unique_ptr`, `shared_ptr`, `weak_ptr` vs. Rusts `Box`, `Rc`, `Arc`
 - **RAII** - Resource Acquisition Is Initialization, et mønster begge språk bygger på
-- **Livstider** - implisitte i C++, eksplisitte i Rust
+- **Levetider** - implisitte i C++, eksplisitte i Rust
 - **Move-semantikk** - `std::move` i C++ vs. move-by-default i Rust
 
 ## Sammenlikning

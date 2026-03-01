@@ -1,11 +1,11 @@
-# Livstider i Rust
+# Levetider i Rust
 
 ## Lån og referanser
 
 I Rust kalles det å ta en referanse for å *[låne](../ordliste.md#laan)* en verdi. Du kan låne uforanderlig (`&T`) eller muterbart (`&mut T`). [Lånereglene](../ordliste.md#laaneregler) sier at du på ethvert tidspunkt kan ha *enten* én muterbar referanse *eller* et vilkårlig antall uforanderlige referanser — aldri begge samtidig.
 
 ```rust
-{{#include ../../rust/src/livstider/mod.rs:livstid_laan_grunnleggende}}
+{{#include ../../rust/src/levetider/mod.rs:levetid_laan_grunnleggende}}
 ```
 
 Disse reglene håndheves av [lånesjekkeren](../ordliste.md#laanesjekkeren) ved kompilering. Prøver du å bryte dem, får du en [kompileringsfeil](../ordliste.md#kompileringsfeil) — ikke [udefinert oppførsel](../ordliste.md#udefinert-oppforsel) ved kjøretid.
@@ -49,7 +49,7 @@ println!("{ref_til_forste}");
 
 `push` krever muterbar tilgang til vektoren (`&mut self`), men det finnes allerede et uforanderlig lån (`ref_til_forste`). Lånereglene forbyr dette, og kompilatoren gir feil.
 
-## Livstidsannotasjoner
+## Levetidsannotasjoner
 
 Noen ganger kan ikke kompilatoren automatisk avgjøre hvor lenge en referanse er gyldig. Tenk på en funksjon som returnerer den lengste av to strenger:
 
@@ -59,38 +59,38 @@ fn lengste(s1: &str, s2: &str) -> &str {
 }
 ```
 
-Kompilatoren vet ikke om returverdien følger [livstiden](../ordliste.md#livstid) til `s1` eller `s2`. Løsningen er en [livstidsannotering](../ordliste.md#livstidsannotering) — en eksplisitt markering av at referansene henger sammen:
+Kompilatoren vet ikke om returverdien følger [levetiden](../ordliste.md#levetid) til `s1` eller `s2`. Løsningen er en [levetidsannotering](../ordliste.md#levetidsannotering) — en eksplisitt markering av at referansene henger sammen:
 
 ```rust
-{{#include ../../rust/src/livstider/mod.rs:livstid_annotasjon}}
+{{#include ../../rust/src/levetider/mod.rs:levetid_annotasjon}}
 ```
 
 Annotasjonen `'a` sier: «returverdien lever minst like lenge som *begge* inputreferansene». Kompilatoren bruker dette til å garantere at resultatet aldri overlever dataen det peker på.
 
-> **Merk:** Livstidsannotasjoner endrer ikke hvor lenge verdier lever — de *beskriver* forholdet mellom referansers livstider slik at kompilatoren kan verifisere dem.
+> **Merk:** Levetidsannotasjoner endrer ikke hvor lenge verdier lever — de *beskriver* forholdet mellom referansers levetider slik at kompilatoren kan verifisere dem.
 
-## Livstidselisjon
+## Levetidselisjon
 
-I mange vanlige tilfeller trenger du ikke skrive livstidsannotasjoner eksplisitt. Rust har tre [elisjonsregler](../ordliste.md#livstidselisjon) som dekker de fleste funksjoner:
+I mange vanlige tilfeller trenger du ikke skrive levetidsannotasjoner eksplisitt. Rust har tre [elisjonsregler](../ordliste.md#levetidselisjon) som dekker de fleste funksjoner:
 
-1. Hver inputreferanse får sin egen livstidsparameter.
-2. Hvis det er nøyaktig én inputlivstid, brukes den for alle outputreferanser.
-3. Hvis en av inputparametrene er `&self` eller `&mut self`, brukes `self`s livstid for alle outputreferanser.
+1. Hver inputreferanse får sin egen levetidsparameter.
+2. Hvis det er nøyaktig én inputlevetid, brukes den for alle outputreferanser.
+3. Hvis en av inputparametrene er `&self` eller `&mut self`, brukes `self`s levetid for alle outputreferanser.
 
 Disse reglene gjør at de fleste funksjoner bare fungerer uten annotasjoner:
 
 ```rust
-{{#include ../../rust/src/livstider/mod.rs:livstid_elisjon}}
+{{#include ../../rust/src/levetider/mod.rs:levetid_elisjon}}
 ```
 
-Her utleder kompilatoren automatisk at returverdien har samme livstid som `tekst`-parameteren (regel 2). Du trenger ingen `'a`.
+Her utleder kompilatoren automatisk at returverdien har samme levetid som `tekst`-parameteren (regel 2). Du trenger ingen `'a`.
 
-## Livstider i strukturer
+## Levetider i strukturer
 
-Når en struct inneholder en referanse, må du oppgi en livstidsparameter. Dette forteller kompilatoren at strukturen ikke kan overleve dataen den refererer til:
+Når en struct inneholder en referanse, må du oppgi en levetidsparameter. Dette forteller kompilatoren at strukturen ikke kan overleve dataen den refererer til:
 
 ```rust,ignore
-{{#include ../../rust/src/livstider/mod.rs:livstid_struct_type}}
+{{#include ../../rust/src/levetider/mod.rs:levetid_struct_type}}
 ```
 
 Bruk:
@@ -107,17 +107,17 @@ Bruk:
 #         println!("  Utdrag: «{}»", self.tekst);
 #     }
 # }
-{{#include ../../rust/src/livstider/mod.rs:livstid_struct_bruk}}
+{{#include ../../rust/src/levetider/mod.rs:levetid_struct_bruk}}
 ```
 
 `Utdrag<'a>` kan ikke overleve `roman` — kompilatoren garanterer dette. I C++ ville en tilsvarende struct med en `std::string_view` eller `const char*` stille tillatt at dataen ble destruert mens strukturen fortsatt eksisterte.
 
-## `'static`-livstiden
+## `'static`-levetiden
 
-`'static` er en spesiell livstid som betyr «lever like lenge som hele programmet». Streng-literaler har alltid livstiden `'static`:
+`'static` er en spesiell levetid som betyr «lever like lenge som hele programmet». Streng-literaler har alltid levetiden `'static`:
 
 ```rust
-{{#include ../../rust/src/livstider/mod.rs:livstid_static}}
+{{#include ../../rust/src/levetider/mod.rs:levetid_static}}
 ```
 
 `'static` betyr ikke at verdien er uforanderlig eller global — det betyr bare at den *kan* leve like lenge som programmet. Eide typer som `String` og `i32` oppfyller også `'static`-kravet, fordi de ikke inneholder referanser som kan bli ugyldige.

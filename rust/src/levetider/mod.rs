@@ -1,16 +1,16 @@
 pub fn main() {
-    println!("\n=== Livstider i Rust ===");
+    println!("\n=== Levetider i Rust ===");
 
     laan_grunnleggende();
-    livstidsannotasjon();
-    livstidselisjon();
-    struct_med_livstid();
-    static_livstid();
+    levetidsannotasjon();
+    levetidselisjon();
+    struct_med_levetid();
+    static_levetid();
 }
 
 fn laan_grunnleggende() {
     println!("\n--- Lån og referanser ---");
-    // ANCHOR: livstid_laan_grunnleggende
+    // ANCHOR: levetid_laan_grunnleggende
     let mut tekst = String::from("hei");
 
     // Uforanderlig lån — vi kan ha flere samtidig
@@ -22,12 +22,12 @@ fn laan_grunnleggende() {
     let r3 = &mut tekst;
     r3.push_str(" verden");
     println!("  r3 = {r3}");
-    // ANCHOR_END: livstid_laan_grunnleggende
+    // ANCHOR_END: levetid_laan_grunnleggende
 }
 
-fn livstidsannotasjon() {
-    println!("\n--- Livstidsannotasjoner ---");
-    // ANCHOR: livstid_annotasjon
+fn levetidsannotasjon() {
+    println!("\n--- Levetidsannotasjoner ---");
+    // ANCHOR: levetid_annotasjon
     fn lengste<'a>(s1: &'a str, s2: &'a str) -> &'a str {
         if s1.len() >= s2.len() {
             s1
@@ -43,13 +43,13 @@ fn livstidsannotasjon() {
         resultat = lengste(&tekst1, &tekst2);
         println!("  Lengste: {resultat}");
     }
-    // ANCHOR_END: livstid_annotasjon
+    // ANCHOR_END: levetid_annotasjon
 }
 
-fn livstidselisjon() {
-    println!("\n--- Livstidselisjon ---");
-    // ANCHOR: livstid_elisjon
-    // Kompilatoren utleder livstiden automatisk her:
+fn levetidselisjon() {
+    println!("\n--- Levetidselisjon ---");
+    // ANCHOR: levetid_elisjon
+    // Kompilatoren utleder levetiden automatisk her:
     // fn forste_ord<'a>(tekst: &'a str) -> &'a str
     fn forste_ord(tekst: &str) -> &str {
         match tekst.find(' ') {
@@ -61,10 +61,10 @@ fn livstidselisjon() {
     let setning = String::from("Rust er gøy");
     let ord = forste_ord(&setning);
     println!("  Første ord: {ord}");
-    // ANCHOR_END: livstid_elisjon
+    // ANCHOR_END: levetid_elisjon
 }
 
-// ANCHOR: livstid_struct_type
+// ANCHOR: levetid_struct_type
 struct Utdrag<'a> {
     tekst: &'a str,
 }
@@ -78,21 +78,21 @@ impl<'a> Utdrag<'a> {
         println!("  Utdrag: «{}»", self.tekst);
     }
 }
-// ANCHOR_END: livstid_struct_type
+// ANCHOR_END: levetid_struct_type
 
-fn struct_med_livstid() {
-    println!("\n--- Struct med livstid ---");
-    // ANCHOR: livstid_struct_bruk
+fn struct_med_levetid() {
+    println!("\n--- Struct med levetid ---");
+    // ANCHOR: levetid_struct_bruk
     let roman = String::from("Det var en mørk og stormfull natt.");
     let utdrag = Utdrag::ny(&roman[..28]);
     utdrag.vis();
-    // ANCHOR_END: livstid_struct_bruk
+    // ANCHOR_END: levetid_struct_bruk
 }
 
-fn static_livstid() {
-    println!("\n--- 'static-livstiden ---");
-    // ANCHOR: livstid_static
-    // Streng-literaler har alltid livstiden 'static
+fn static_levetid() {
+    println!("\n--- 'static-levetiden ---");
+    // ANCHOR: levetid_static
+    // Streng-literaler har alltid levetiden 'static
     let s: &'static str = "Jeg lever like lenge som programmet";
     println!("  {s}");
 
@@ -102,5 +102,5 @@ fn static_livstid() {
     }
     skriv_ut(42);
     skriv_ut(String::from("eid streng"));
-    // ANCHOR_END: livstid_static
+    // ANCHOR_END: levetid_static
 }

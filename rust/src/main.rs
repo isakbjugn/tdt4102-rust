@@ -1,11 +1,11 @@
 mod minnehandtering;
 mod smartpekere;
 mod raii;
-mod livstider;
+mod levetider;
 
 fn main() {
     minnehandtering::main();
     smartpekere::main();
     raii::main();
-    livstider::main();
+    levetider::main();
 }

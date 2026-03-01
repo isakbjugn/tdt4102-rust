@@ -25,7 +25,7 @@ Et vanlig bruksområde er rekursive typer, som ellers ville hatt ukjent størrel
 
 Uten `Box` kan ikke kompilatoren beregne størrelsen til `Liste`, fordi den inneholder seg selv. `Box` bryter rekursjonen med en peker av fast størrelse.
 
-## `Rc<T>` — referansetelling (enkeltrådet)
+## `Rc<T>` — referansetelling (én-trådet)
 
 Noen ganger trenger flere deler av programmet å eie samme verdi. `Rc<T>` ([referansetelling](../ordliste.md#referansetelling)) tillater dette:
 

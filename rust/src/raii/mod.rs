@@ -117,7 +117,5 @@ fn tidlig_drop() {
     println!("  Før drop");
     drop(a); // Frigjør X eksplisitt — a kan ikke brukes etterpå
     println!("  Etter drop");
-
-    // println!("{}", a.navn); // Kompileringsfeil! a er flyttet.
     // ANCHOR_END: raii_tidlig_drop
 }

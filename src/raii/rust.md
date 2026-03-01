@@ -109,4 +109,29 @@ Noen ganger vil du frigjøre en ressurs *før* scopet slutter — for eksempel s
 
 `drop()` tar eierskap over verdien, og kompilatoren nekter deg å bruke den etterpå. Dette er en viktig forskjell fra C++, der du teknisk sett *kan* kalle en destruktør manuelt og deretter fortsette å bruke objektet — noe som gir [udefinert oppførsel](../ordliste.md#udefinert-oppforsel).
 
+Å kalle på ressursen etter `drop()` i Rust vil resultere i en kompileringfeil:
+
+```rust,compile_fail
+# struct Ressurs { navn: String }
+# impl Ressurs {
+#     fn ny(navn: &str) -> Ressurs {
+#         println!("  Oppretter: {navn}");
+#         Ressurs { navn: navn.to_string() }
+#     }
+# }
+# impl Drop for Ressurs {
+#     fn drop(&mut self) {
+#         println!("  Frigjør:   {}", self.navn);
+#     }
+# }
+    let a = Ressurs::ny("X");
+    let _b = Ressurs::ny("Y");
+
+    println!("  Før drop");
+    drop(a); // Frigjør X eksplisitt — a kan ikke brukes etterpå
+    println!("  Etter drop");
+
+    println!("{}", a.navn); // Kompileringsfeil! a er flyttet.
+```
+
 > **Merk:** Du kan ikke kalle `.drop()` direkte på en verdi — Rust forbyr dette for å unngå [double free](../ordliste.md#double-free). Funksjonen `std::mem::drop()` (eller bare `drop()`) er i stedet en vanlig funksjon som tar eierskap og lar verdien gå ut av scope.

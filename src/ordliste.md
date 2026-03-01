@@ -3,7 +3,7 @@
 | Term | Engelsk | Definisjon |
 |------|---------|------------|
 | <a id="allokering"></a>Allokering | *Allocation* | Å reservere minne for en verdi, enten på stacken eller heapen. |
-| <a id="closure"></a>Closure | *Closure* | En anonym funksjon som fanger variabler fra omgivende scope. I C++ skrives de med `[captures](params){ body }`; i Rust med `|params| body`. Rusts closures fanger variabler ved referanse eller ved move, og kompilatoren velger automatisk den mest effektive strategien. |
+| <a id="closure"></a>Closure | *Closure* | En anonym funksjon som fanger variabler fra omgivende scope. I C++ skrives de med `[captures](params){ body }`; i Rust med `\|params\| body`. Rusts closures fanger variabler ved referanse eller ved move, og kompilatoren velger automatisk den mest effektive strategien. |
 | <a id="copy-semantikk"></a>Copy-semantikk | *Copy semantics* | Verdien kopieres bit-for-bit ved tilordning eller funksjonskall. I Rust gjelder dette typer som implementerer `Copy`-traiten, som primitive typer (`i32`, `f64`, `bool`). |
 | <a id="dangling-pointer"></a>Dangling pointer | *Dangling pointer* | En peker som refererer til minne som allerede er frigjort. I C++ gir dette udefinert oppførsel; i Rust er det en kompileringsfeil. |
 | <a id="double-free"></a>Double free | *Double free* | Å frigjøre samme minneområde to ganger. Gir udefinert oppførsel i C++. Rusts eierskapsmodell gjør dette umulig. |

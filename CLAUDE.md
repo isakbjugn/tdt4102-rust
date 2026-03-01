@@ -32,7 +32,7 @@ clang++ -std=c++20 cpp/minnehandtering/main.cpp -o main && ./main
 
 - **`src/`** — mdBook-kilder i markdown. `SUMMARY.md` definerer innholdslisten.
 - **`rust/`** — Cargo-prosjekt (edition 2024). Moduler speiler bokstrukturen (f.eks. `src/minnehandtering/`).
-- **`cpp/`** — Frittstående C++-eksempelfiler, én per konseptmappe.
+- **`cpp/`** — Frittstående C++-eksempelfiler (C++20), én per konseptmappe.
 - **`book.toml`** — mdBook-konfigurasjon. Byggutdata går til `book/`.
 
 ## Kapittelstruktur
@@ -43,7 +43,7 @@ Hvert konsept-kapittel har en fast struktur:
 - **`src/<konsept>/cpp.md`** — C++-perspektivet: problemer, løsninger, eksempler.
 - **`src/<konsept>/rust.md`** — Rust-perspektivet: hvordan Rust løser det samme, eksempler.
 - **`src/<konsept>/sammenlikning.md`** — Side-om-side-tabell og viktige forskjeller.
-- **`cpp/<konsept>/main.cpp`** — Kompilerbar C++-fil med alle eksempler samlet. Må kompilere med `clang++ -std=c++20`.
+- **`cpp/<konsept>/main.cpp`** — Kompilerbar C++-fil med alle eksempler samlet.
 - **`rust/src/<konsept>/mod.rs`** — Rust-modul med alle eksempler. Eksporterer `pub fn main()` som kjører dem. Registreres i `rust/src/main.rs`.
 
 Kapitlet registreres i `src/SUMMARY.md` med fire sider (README, C++, Rust, sammenlikning).

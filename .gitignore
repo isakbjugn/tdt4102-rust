@@ -3,10 +3,8 @@ main
 *.out
 
 # Genererte filer fra eksempler
-cpp/raii/*.txt
-cpp/raii/*.log
-rust/src/raii/*.txt
-rust/src/raii/*.log
+logg.txt
+eksempel.log
 
 # Debug-symboler (macOS)
 *.dSYM/

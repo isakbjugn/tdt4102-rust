@@ -7,7 +7,7 @@
 
 // ANCHOR: raii_fil_uten_raii
 void skriv_til_fil_manuell(bool feil) {
-    FILE* f = fopen("cpp/raii/logg.txt", "w");
+    FILE* f = fopen("logg.txt", "w");
     if (!f) return;
 
     if (feil) {
@@ -21,7 +21,7 @@ void skriv_til_fil_manuell(bool feil) {
 
 // ANCHOR: raii_fil_med_raii
 void skriv_til_fil_raii() {
-    std::ofstream fil("cpp/raii/logg.txt");
+    std::ofstream fil("logg.txt");
     fil << "Alt gikk bra" << std::endl;
     // fil lukkes automatisk når den går ut av scope
 }
@@ -92,7 +92,7 @@ int main() {
 
     std::cout << "\n--- Custom RAII: LoggFil ---" << std::endl;
     {
-        LoggFil logg("cpp/raii/eksempel.log");
+        LoggFil logg("eksempel.log");
         logg.skriv("Første melding");
         logg.skriv("Andre melding");
     }

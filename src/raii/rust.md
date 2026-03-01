@@ -8,7 +8,7 @@ Rusts svar på [destruktører](../ordliste.md#destruktor) er [`Drop`](../ordlist
 
 `std::fs::File` implementerer `Drop`, så filen lukkes automatisk når variabelen går ut av scope:
 
-```rust,no_run
+```rust
 # use std::fs::File;
 # use std::io::Write;
 {{#include ../../rust/src/raii/mod.rs:raii_fil}}
@@ -26,7 +26,7 @@ Du kan implementere `Drop` for egne typer. Her er en loggfilklasse som tilsvarer
 
 Bruk:
 
-```rust,no_run
+```rust
 # use std::fs::File;
 # use std::io::Write;
 # struct LoggFil { fil: File, filnavn: String }

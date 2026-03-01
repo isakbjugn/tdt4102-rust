@@ -14,7 +14,7 @@ pub fn main() {
 
 fn fil_eksempel() {
     // ANCHOR: raii_fil
-    let mut fil = File::create("rust/src/raii/logg.txt").unwrap();
+    let mut fil = File::create("logg.txt").unwrap();
     writeln!(fil, "Alt gikk bra").unwrap();
     // fil lukkes automatisk når den går ut av scope —
     // File implementerer Drop
@@ -54,7 +54,7 @@ impl Drop for LoggFil {
 
 fn custom_loggfil() {
     // ANCHOR: raii_custom_loggfil
-    let mut logg = LoggFil::ny("rust/src/raii/eksempel.log");
+    let mut logg = LoggFil::ny("eksempel.log");
     logg.skriv("Første melding");
     logg.skriv("Andre melding");
     // logg droppes her — avslutningslinjen skrives og filen lukkes

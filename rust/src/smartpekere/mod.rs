@@ -75,6 +75,7 @@ fn rc_counting() {
 #[derive(Debug)]
 struct Node {
     navn: String,
+    #[allow(dead_code)]
     neste: Option<Rc<Node>>,
     forrige: Option<Weak<Node>>,
 }

@@ -1,6 +1,6 @@
 # Hva er Rust?
 
-Rust er et systemprogrammeringsspråk som ble startet av Graydon Hoare hos Mozilla i 2010 og nådde versjon 1.0 i 2015. Det er designet for å gi deg samme ytelse som C og C++, men med kompilatorgarantier for minnesikkerhet — uten å bruke en søppelsamler.
+Rust er et systemprogrammeringsspråk som ble startet av Graydon Hoare hos Mozilla i 2010 og nådde versjon 1.0 i 2015. Det er designet for å gi deg samme ytelse som C og C++, men med kompilatorgarantier for minnesikkerhet — uten å bruke en [søppelsamler](ordliste.md#soppelsamler).
 
 Rust er multiparadigme: du kan skrive imperativ kode med mutabel tilstand, funksjonell kode med iteratorer og closures, og generisk kode med traits og typeparametere. Syntaksen minner om C++, mens typesystemet er inspirert av Haskell og ML.
 

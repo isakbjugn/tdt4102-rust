@@ -1,10 +1,10 @@
 # Hva er Rust?
 
-Rust er et systemprogrammeringsspråk som ble startet av Graydon Hoare hos Mozilla i 2010 og nådde versjon 1.0 i 2015. Det er designet for å gi deg samme ytelse som C og C++, men med kompilatorgarantier for minnesikkerhet — uten å bruke en [søppelsamler](ordliste.md#soppelsamler).
+Rust er et systemprogrammeringsspråk som ble startet av Graydon Hoare hos Mozilla i 2010 og nådde versjon 1.0 i 2015. Det er designet for å gi deg samme ytelse som C og C++, men med kompilatorgarantier for [minnesikkerhet](ordliste.md#minnesikkerhet) — uten å bruke en [søppelsamler](ordliste.md#soppelsamler).
 
-Rust er multiparadigme: du kan skrive imperativ kode med mutabel tilstand, funksjonell kode med iteratorer og closures, og generisk kode med traits og typeparametere. Syntaksen minner om C++, mens typesystemet er inspirert av Haskell og ML.
+Rust er [multiparadigme](ordliste.md#paradigme): du kan skrive imperativ kode med mutabel tilstand, funksjonell kode med iteratorer og [closures](ordliste.md#closure), og generisk kode med [traits](ordliste.md#trait) og typeparametere. Syntaksen minner om C++, mens typesystemet er inspirert av Haskell og ML.
 
-For dere som allerede kan C++ er Rust spesielt interessant fordi det løser mange av de samme problemene — men med andre virkemidler. Der C++ gir deg verktøy og konvensjoner for å unngå minnefeil, gjør Rust det til en *kompileringsfeil* å bruke minne feil.
+For dere som allerede kan C++ er Rust spesielt interessant fordi det løser mange av de samme problemene — men med andre virkemidler. Der C++ gir deg verktøy og konvensjoner for å unngå minnefeil, gjør Rust det til en *[kompileringsfeil](ordliste.md#kompileringsfeil)* å bruke minne feil.
 
 La oss plassere Rust i landskapet av programmeringsspråk med noen tabeller.
 
@@ -15,7 +15,7 @@ La oss plassere Rust i landskapet av programmeringsspråk med noen tabeller.
 | **Minnesikker** | **Rust** | Java, Go, C#, Python, Haskell |
 | **Ikke minnesikker** | C, C++ | |
 
-Rust er alene i øvre venstre kvadrant — det eneste utbredte språket som er minnesikkert uten søppelsamler. Dette er mulig takket være *eierskapsmodellen*: kompilatoren sporer hvem som eier hver verdi, og frigjør minne automatisk når eieren går ut av scope. Ingen garbage collector, ingen manuell `free`.
+Rust er alene i øvre venstre kvadrant — det eneste utbredte språket som er minnesikkert uten søppelsamler. Dette er mulig takket være *[eierskapsmodellen](ordliste.md#eierskap)*: kompilatoren sporer hvem som eier hver verdi, og frigjør minne automatisk når eieren går ut av [scope](ordliste.md#scope). Ingen garbage collector, ingen manuell `free`.
 
 ## Typesystem
 
@@ -33,7 +33,7 @@ Rust er både statisk og strengt typet. C++ er statisk men *svakt* typet — det
 | **Høynivå-ergonomi** | **Rust** | Java, Python, Go, Haskell, Kotlin |
 | **Lavnivå-ergonomi** | C, C++ | |
 
-Rust gir deg høynivå-ergonomi — iteratorer, closures, pattern matching, generics — som kompileres til like effektiv maskinkode som håndskrevet C. Dette kalles *nullkostnad-abstraksjoner*. De fleste høynivåspråk betaler for sine abstraksjoner med søppelsamler, virtuell dispatch eller JIT-kompilering. C og C++ er lette, men tilbyr færre ergonomiske abstraksjoner ut av boksen.
+Rust gir deg høynivå-ergonomi — iteratorer, closures, pattern matching, generics — som kompileres til like effektiv maskinkode som håndskrevet C. Dette kalles *[nullkostnad-abstraksjoner](ordliste.md#nullkostnad-abstraksjon)*. De fleste høynivåspråk betaler for sine abstraksjoner med søppelsamler, [virtuell dispatch](ordliste.md#virtuell-dispatch) eller [JIT-kompilering](ordliste.md#jit-kompilering). C og C++ er lette, men tilbyr færre ergonomiske abstraksjoner ut av boksen.
 
 ## Null-sikkerhet
 
@@ -56,4 +56,4 @@ Rust har ikke `null`. I stedet bruker det `Option<T>`, som enten er `Some(verdi)
 
 ## Oppsummering
 
-Rust flytter feil fra kjøretid til kompileringstid. Mye av det dere lærer om minnefeil, dangling pointers og data races i C++ er nettopp det Rust er designet for å forhindre — ikke gjennom konvensjoner, men gjennom språkets typesystem.
+Rust flytter feil fra kjøretid til kompileringstid. Mye av det dere lærer om minnefeil, [dangling pointers](ordliste.md#dangling-pointer) og data races i C++ er nettopp det Rust er designet for å forhindre — ikke gjennom konvensjoner, men gjennom språkets typesystem.

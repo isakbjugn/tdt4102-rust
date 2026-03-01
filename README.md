@@ -1,6 +1,6 @@
-# fagdag-cpp
+# Rust for C++-studenter
 
-Et undervisningsprosjekt som sammenlikner C++ og Rust, bygd som en [mdBook](https://rust-lang.github.io/mdBook/).
+Et undervisningsopplegg til TDT4102 Prosedyre- og objektorientert programmering, som sammenlikner C++ og Rust. Innholdet er tilgjengelig i lesbart format på [isakbjugn.github.io/tdt4102-rust](https://isakbjugn.github.io/tdt4102-rust/).
 
 ## Kom i gang
 

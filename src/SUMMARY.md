@@ -14,6 +14,10 @@
   - [C++](./raii/cpp.md)
   - [Rust](./raii/rust.md)
   - [Sammenlikning](./raii/sammenlikning.md)
+- [Livstider](./livstider/README.md)
+  - [C++](./livstider/cpp.md)
+  - [Rust](./livstider/rust.md)
+  - [Sammenlikning](./livstider/sammenlikning.md)
 
 ---
 

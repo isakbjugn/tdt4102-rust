@@ -39,6 +39,14 @@ clang++ -std=c++20 cpp/minnehandtering/main.cpp -o main && ./main
 
 Rust-kildefiler bruker `// ANCHOR:` og `// ANCHOR_END:`-kommentarer for å markere koderegioner som blir inkludert i mdBook via `{{#rustdoc_include}}`-direktiv. Ta vare på disse ankerne ved redigering av Rust-kode, og hold ankernavnene i synk med markdown-filene som refererer til dem.
 
+## Ordliste
+
+`src/ordliste.md` inneholder fagtermer med norsk term, engelsk oversettelse og definisjon. Hver term har en `<a id="...">`-anker slik at andre sider kan lenke dit.
+
+- Når du skriver ny tekst: lenk første forekomst av en ordlisteterm per side med `[term](./ordliste.md#anker)` (eller `../ordliste.md#anker` fra undermapper). Lenk i brødtekst og tabellceller, men ikke i overskrifter eller tabelloverskrifter.
+- Nye fagtermer som er viktige å forstå legges inn i ordlisten, alfabetisk sortert, med `<a id="...">`-anker (lowercase ASCII, bindestrek i stedet for mellomrom).
+- Unngå `|` i backticks inne i tabellceller — bruk `\|` for å hindre at tabellparseren tolker dem som kolonneseparatorer.
+
 ## Git-arbeidsmåte
 
 - Ikke lag commits — brukeren committer selv.

@@ -4,7 +4,7 @@ I C++ har du direkte kontroll over minneallokering og -frigjøring. Dette gir fl
 
 ## Heap vs. Stack
 
-- **Stack**: Automatisk allokert, frigjøres når variabelen går ut av scope. Begrenset størrelse.
+- **Stack**: Automatisk allokert, frigjøres når variabelen går ut av [scope](../ordliste.md#scope). Begrenset størrelse.
 - **Heap**: Manuelt allokert med `new`, må frigjøres med `delete`. Større og mer fleksibelt.
 
 ## `new` og `delete`
@@ -23,7 +23,7 @@ int* arr = new int[10];
 delete[] arr;           // NB: delete[], ikke delete
 ```
 
-Å bruke `delete` på en array (uten `[]`) gir udefinert oppførsel.
+Å bruke `delete` på en array (uten `[]`) gir [udefinert oppførsel](../ordliste.md#udefinert-oppforsel).
 
 ## Vanlige feil
 
@@ -34,7 +34,7 @@ delete[] arr;           // NB: delete[], ikke delete
 
 ## Udefinert oppførsel (Undefined Behavior)
 
-Verken kompilatoren eller clangd advarer om "use after free". Koden kompilerer og kjører, men oppførselen er *udefinert* - C++-standarden garanterer ingenting. I praksis kan du få:
+Verken kompilatoren eller clangd advarer om "[use after free](../ordliste.md#use-after-free)". Koden kompilerer og kjører, men oppførselen er *udefinert* - C++-standarden garanterer ingenting. I praksis kan du få:
 
 1. **Gammel verdi** - minnet er ikke overskrevet ennå
 2. **Søppelverdi** - minnet er gjenbrukt til noe annet
@@ -96,7 +96,7 @@ Kopiering fungerer også ved funksjonskall:
 
 ### Move-semantikk i Rust
 
-Heap-allokerte typer som `String` blir *flyttet* ved tilordning:
+[Heap](../ordliste.md#heap)-allokerte typer som `String` blir *flyttet* ved tilordning:
 
 ```rust
 {{#include ../../rust/src/minnehandtering/mod.rs:move_semantikk}}
@@ -111,7 +111,7 @@ Det samme gjelder ved funksjonskall:
 {{#include ../../rust/src/minnehandtering/mod.rs:move_funksjon}}
 ```
 
-Hvis vi prøver å bruke `c_string` etter at den er flyttet, får vi en kompileringsfeil:
+Hvis vi prøver å bruke `c_string` etter at den er flyttet, får vi en [kompileringsfeil](../ordliste.md#kompileringsfeil):
 
 ```rust,compile_fail
 #   fn function_that_moves(string: String) {
@@ -122,4 +122,4 @@ Hvis vi prøver å bruke `c_string` etter at den er flyttet, får vi en kompiler
     println!("{c_string}"); // Kompileringsfeil! Verdien er flyttet.
 ```
 
-Rusts kompilator fanger disse feilene *før* programmet kjører - i motsetning til C++, der de gir udefinert oppførsel ved kjøretid.
+Rusts kompilator fanger disse feilene *før* programmet kjører - i motsetning til C++, der de gir [udefinert oppførsel](../ordliste.md#udefinert-oppforsel) ved kjøretid.

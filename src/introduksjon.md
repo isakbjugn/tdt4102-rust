@@ -6,7 +6,7 @@ Et undervisningsprosjekt for å utforske grunnleggende C++-konsepter, med fokus 
 
 Prosjektet tar for seg sentrale konsepter i C++:
 
-- **Minnehåndtering** - manuell allokering med `new`/`delete` vs. Rusts eierskap-modell
+- **Minnehåndtering** - manuell [allokering](./ordliste.md#allokering) med `new`/`delete` vs. Rusts [eierskap-modell](./ordliste.md#eierskap)
 - **Smartpekere** - `unique_ptr`, `shared_ptr`, `weak_ptr` vs. Rusts `Box`, `Rc`, `Arc`
 - **RAII** - Resource Acquisition Is Initialization, et mønster begge språk bygger på
 - **Livstider** - implisitte i C++, eksplisitte i Rust
@@ -21,4 +21,4 @@ Prosjektet tar for seg sentrale konsepter i C++:
 | Delt eierskap | `std::shared_ptr<T>` | `Rc<T>` / `Arc<T>` |
 | Trådsikker deling | `std::shared_ptr<T>` + mutex | `Arc<T>` + `Mutex<T>` |
 | Null-sikkerhet | Ingen garanti | `Option<T>` |
-| Minnefeil | Udefinert oppførsel | Kompileringsfeil |
+| Minnefeil | [Udefinert oppførsel](./ordliste.md#udefinert-oppforsel) | [Kompileringsfeil](./ordliste.md#kompileringsfeil) |

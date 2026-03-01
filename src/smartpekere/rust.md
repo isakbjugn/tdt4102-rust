@@ -14,13 +14,21 @@ Smartpekere i Rust brukes for spesielle scenarier:
 `Box<T>` legger en verdi på [heapen](../ordliste.md#heap) med enkel eierskap:
 
 ```rust
-{{#rustdoc_include ../../rust/src/smartpekere/mod.rs:box_grunnleggende}}
+{{#include ../../rust/src/smartpekere/mod.rs:box_grunnleggende}}
 ```
 
 Et vanlig bruksområde er rekursive typer, som ellers ville hatt ukjent størrelse:
 
 ```rust
-{{#rustdoc_include ../../rust/src/smartpekere/mod.rs:box_rekursiv}}
+{{#include ../../rust/src/smartpekere/mod.rs:box_rekursiv_type}}
+```
+
+```rust
+# enum Liste {
+#     Element(i32, Box<Liste>),
+#     Slutt,
+# }
+{{#include ../../rust/src/smartpekere/mod.rs:box_rekursiv}}
 ```
 
 Uten `Box` kan ikke kompilatoren beregne størrelsen til `Liste`, fordi den inneholder seg selv. `Box` bryter rekursjonen med en peker av fast størrelse.
@@ -30,13 +38,15 @@ Uten `Box` kan ikke kompilatoren beregne størrelsen til `Liste`, fordi den inne
 Noen ganger trenger flere deler av programmet å eie samme verdi. `Rc<T>` ([referansetelling](../ordliste.md#referansetelling)) tillater dette:
 
 ```rust
-{{#rustdoc_include ../../rust/src/smartpekere/mod.rs:rc_grunnleggende}}
+# use std::rc::Rc;
+{{#include ../../rust/src/smartpekere/mod.rs:rc_grunnleggende}}
 ```
 
 `Rc::clone` kopierer ikke verdien — den øker bare referansetelleren. Verdien frigjøres når siste `Rc` går ut av [scope](../ordliste.md#scope):
 
 ```rust
-{{#rustdoc_include ../../rust/src/smartpekere/mod.rs:rc_counting}}
+# use std::rc::Rc;
+{{#include ../../rust/src/smartpekere/mod.rs:rc_counting}}
 ```
 
 > **Merk:** `Rc<T>` er *ikke* trådsikker. Bruk `Arc<T>` for deling mellom tråder.
@@ -45,8 +55,25 @@ Noen ganger trenger flere deler av programmet å eie samme verdi. `Rc<T>` ([refe
 
 Akkurat som i C++ kan sykliske referanser føre til [minnelekkasjer](../ordliste.md#minnelekkasje). `Weak<T>` er en svak referanse som ikke hindrer frigjøring:
 
+```rust,ignore
+{{#include ../../rust/src/smartpekere/mod.rs:weak_syklus_type}}
+```
+
 ```rust
-{{#rustdoc_include ../../rust/src/smartpekere/mod.rs:weak_syklus}}
+# use std::rc::{Rc, Weak};
+# #[derive(Debug)]
+# #[allow(dead_code)]
+# struct Node {
+#     navn: String,
+#     neste: Option<Rc<Node>>,
+#     forrige: Option<Weak<Node>>,
+# }
+# impl Drop for Node {
+#     fn drop(&mut self) {
+#         println!("  ~Node({})", self.navn);
+#     }
+# }
+{{#include ../../rust/src/smartpekere/mod.rs:weak_syklus}}
 ```
 
 For å bruke verdien fra en `Weak<T>` kaller du `.upgrade()`, som returnerer `Option<Rc<T>>` — `None` hvis verdien er frigjort.
@@ -56,7 +83,9 @@ For å bruke verdien fra en `Weak<T>` kaller du `.upgrade()`, som returnerer `Op
 `Arc<T>` er den trådsikre varianten av `Rc<T>`. Den bruker atomiske operasjoner for referansetelleren, slik at den trygt kan deles mellom tråder:
 
 ```rust
-{{#rustdoc_include ../../rust/src/smartpekere/mod.rs:arc_grunnleggende}}
+# use std::sync::Arc;
+# use std::thread;
+{{#include ../../rust/src/smartpekere/mod.rs:arc_grunnleggende}}
 ```
 
 Rusts typesystem håndhever dette: `Rc<T>` implementerer ikke `Send`-traiten, så kompilatoren nekter å sende den til en annen tråd. Du *må* bruke `Arc<T>` for [trådsikkerhet](../ordliste.md#traadsikkerhet).
@@ -66,7 +95,8 @@ Rusts typesystem håndhever dette: `Rc<T>` implementerer ikke `Send`-traiten, s�
 Normalt sjekker Rust lånereglene ved kompilering: enten én muterbar referanse, eller flere uforanderlige. `RefCell<T>` flytter denne sjekken til kjøretid, noe som muliggjør [indre mutabilitet](../ordliste.md#indre-mutabilitet):
 
 ```rust
-{{#rustdoc_include ../../rust/src/smartpekere/mod.rs:refcell_grunnleggende}}
+# use std::cell::RefCell;
+{{#include ../../rust/src/smartpekere/mod.rs:refcell_grunnleggende}}
 ```
 
 Hvis du bryter lånereglene ved kjøretid (f.eks. to muterbare lån samtidig), panicker programmet i stedet for å gi [udefinert oppførsel](../ordliste.md#udefinert-oppforsel).

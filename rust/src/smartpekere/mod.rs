@@ -15,22 +15,23 @@ pub fn hello() {
     refcell_grunnleggende();
 }
 
-// ANCHOR: box_grunnleggende
 fn box_grunnleggende() {
+    // ANCHOR: box_grunnleggende
     let b = Box::new(42);
     println!("Verdien i boksen: {b}");
     // b frigjøres automatisk her
+    // ANCHOR_END: box_grunnleggende
 }
-// ANCHOR_END: box_grunnleggende
 
-// ANCHOR: box_rekursiv
-// Rekursive typer krever Box for å ha en kjent størrelse
+// ANCHOR: box_rekursiv_type
 enum Liste {
     Element(i32, Box<Liste>),
     Slutt,
 }
+// ANCHOR_END: box_rekursiv_type
 
 fn box_rekursiv() {
+    // ANCHOR: box_rekursiv
     let liste = Liste::Element(1,
         Box::new(Liste::Element(2,
             Box::new(Liste::Element(3,
@@ -43,22 +44,22 @@ fn box_rekursiv() {
         gjeldende = neste;
     }
     println!("slutt");
+    // ANCHOR_END: box_rekursiv
 }
-// ANCHOR_END: box_rekursiv
 
-// ANCHOR: rc_grunnleggende
 fn rc_grunnleggende() {
+    // ANCHOR: rc_grunnleggende
     let a = Rc::new(String::from("delt verdi"));
 
     let b = Rc::clone(&a); // Øker referansetelleren
     let c = Rc::clone(&a);
 
     println!("a: {a}, b: {b}, c: {c}");
+    // ANCHOR_END: rc_grunnleggende
 }
-// ANCHOR_END: rc_grunnleggende
 
-// ANCHOR: rc_counting
 fn rc_counting() {
+    // ANCHOR: rc_counting
     let a = Rc::new(String::from("hei"));
     println!("Etter opprettelse:   {}", Rc::strong_count(&a));
 
@@ -68,14 +69,14 @@ fn rc_counting() {
     } // _b går ut av scope
 
     println!("Etter blokk:         {}", Rc::strong_count(&a));
+    // ANCHOR_END: rc_counting
 }
-// ANCHOR_END: rc_counting
 
-// ANCHOR: weak_syklus
+// ANCHOR: weak_syklus_type
 #[derive(Debug)]
+#[allow(dead_code)]
 struct Node {
     navn: String,
-    #[allow(dead_code)]
     neste: Option<Rc<Node>>,
     forrige: Option<Weak<Node>>,
 }
@@ -85,8 +86,10 @@ impl Drop for Node {
         println!("  ~Node({})", self.navn);
     }
 }
+// ANCHOR_END: weak_syklus_type
 
 fn weak_syklus() {
+    // ANCHOR: weak_syklus
     let a = Rc::new(Node {
         navn: String::from("A"),
         neste: None,
@@ -99,8 +102,6 @@ fn weak_syklus() {
         forrige: Some(Rc::downgrade(&a)), // Svak referanse til A
     });
 
-    // For å sette a.neste = b trenger vi indre mutabilitet,
-    // men her viser vi konseptet med weak_ptr:
     println!("a sterke ref: {}", Rc::strong_count(&a));
     println!("a svake ref:  {}", Rc::weak_count(&a));
 
@@ -110,11 +111,11 @@ fn weak_syklus() {
             println!("b.forrige peker på: {}", node.navn);
         }
     }
+    // ANCHOR_END: weak_syklus
 }
-// ANCHOR_END: weak_syklus
 
-// ANCHOR: arc_grunnleggende
 fn arc_grunnleggende() {
+    // ANCHOR: arc_grunnleggende
     let data = Arc::new(vec![1, 2, 3]);
 
     let data_klon = Arc::clone(&data);
@@ -124,11 +125,11 @@ fn arc_grunnleggende() {
 
     println!("Fra main:  {data:?}");
     handle.join().unwrap();
+    // ANCHOR_END: arc_grunnleggende
 }
-// ANCHOR_END: arc_grunnleggende
 
-// ANCHOR: refcell_grunnleggende
 fn refcell_grunnleggende() {
+    // ANCHOR: refcell_grunnleggende
     let data = RefCell::new(vec![1, 2, 3]);
 
     // Kan mutere gjennom en uforanderlig binding:
@@ -140,5 +141,5 @@ fn refcell_grunnleggende() {
     let laan1 = data.borrow();
     let laan2 = data.borrow();
     println!("laan1: {laan1:?}, laan2: {laan2:?}");
+    // ANCHOR_END: refcell_grunnleggende
 }
-// ANCHOR_END: refcell_grunnleggende

@@ -3,7 +3,7 @@ use std::rc::{Rc, Weak};
 use std::sync::Arc;
 use std::thread;
 
-pub fn hello() {
+pub fn main() {
     println!("\n=== Smartpekere i Rust ===");
 
     box_grunnleggende();

@@ -6,6 +6,10 @@
   - [C++](./minnehandtering/cpp.md)
   - [Rust](./minnehandtering/rust.md)
   - [Sammenlikning](./minnehandtering/sammenlikning.md)
+- [Smartpekere](./smartpekere/README.md)
+  - [C++](./smartpekere/cpp.md)
+  - [Rust](./smartpekere/rust.md)
+  - [Sammenlikning](./smartpekere/sammenlikning.md)
 
 ---
 

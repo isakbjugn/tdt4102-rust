@@ -92,7 +92,7 @@ int main() {
 
     std::cout << "\n--- Custom RAII: LoggFil ---" << std::endl;
     {
-        LoggFil logg("eksempel.log");
+        LoggFil logg("logg.txt");
         logg.skriv("Første melding");
         logg.skriv("Andre melding");
     }

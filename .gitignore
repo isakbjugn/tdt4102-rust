@@ -4,7 +4,6 @@ main
 
 # Genererte filer fra eksempler
 logg.txt
-eksempel.log
 
 # Debug-symboler (macOS)
 *.dSYM/

@@ -54,7 +54,7 @@ impl Drop for LoggFil {
 
 fn custom_loggfil() {
     // ANCHOR: raii_custom_loggfil
-    let mut logg = LoggFil::ny("eksempel.log");
+    let mut logg = LoggFil::ny("logg.txt");
     logg.skriv("Første melding");
     logg.skriv("Andre melding");
     // logg droppes her — avslutningslinjen skrives og filen lukkes

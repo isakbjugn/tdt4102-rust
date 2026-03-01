@@ -2,6 +2,9 @@
 main
 *.out
 
+# Genererte filer fra eksempler
+logg.txt
+
 # Debug-symboler (macOS)
 *.dSYM/
 

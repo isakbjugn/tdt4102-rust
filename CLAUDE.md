@@ -44,7 +44,7 @@ Hvert konsept-kapittel har en fast struktur:
 - **`src/<konsept>/rust.md`** — Rust-perspektivet: hvordan Rust løser det samme, eksempler.
 - **`src/<konsept>/sammenlikning.md`** — Side-om-side-tabell og viktige forskjeller.
 - **`cpp/<konsept>/main.cpp`** — Kompilerbar C++-fil med alle eksempler samlet. Må kompilere med `clang++ -std=c++20`.
-- **`rust/src/<konsept>/mod.rs`** — Rust-modul med alle eksempler. Eksporterer `pub fn hello()` som kjører dem. Registreres i `rust/src/main.rs`.
+- **`rust/src/<konsept>/mod.rs`** — Rust-modul med alle eksempler. Eksporterer `pub fn main()` som kjører dem. Registreres i `rust/src/main.rs`.
 
 Kapitlet registreres i `src/SUMMARY.md` med fire sider (README, C++, Rust, sammenlikning).
 

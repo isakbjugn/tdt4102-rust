@@ -2,7 +2,6 @@ mod minnehandtering;
 mod smartpekere;
 
 fn main() {
-    println!("Hello, world!");
-    minnehandtering::hello();
-    smartpekere::hello();
+    minnehandtering::main();
+    smartpekere::main();
 }

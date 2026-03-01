@@ -1,4 +1,4 @@
-pub fn hello() {
+pub fn main() {
     println!("Kvekk fra rust!");
 
     // ANCHOR: copy_semantikk

@@ -10,6 +10,10 @@
   - [C++](./smartpekere/cpp.md)
   - [Rust](./smartpekere/rust.md)
   - [Sammenlikning](./smartpekere/sammenlikning.md)
+- [RAII](./raii/README.md)
+  - [C++](./raii/cpp.md)
+  - [Rust](./raii/rust.md)
+  - [Sammenlikning](./raii/sammenlikning.md)
 
 ---
 

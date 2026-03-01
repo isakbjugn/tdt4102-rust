@@ -30,14 +30,44 @@ clang++ -std=c++20 cpp/minnehandtering/main.cpp -o main && ./main
 
 ## Arkitektur
 
-- **`src/`** — mdBook-kilder i markdown. `SUMMARY.md` definerer innholdslisten. Hvert konsept har `teori.md` (teori) og `oppgaver.md` (oppgaver).
+- **`src/`** — mdBook-kilder i markdown. `SUMMARY.md` definerer innholdslisten.
 - **`rust/`** — Cargo-prosjekt (edition 2024). Moduler speiler bokstrukturen (f.eks. `src/minnehandtering/`).
 - **`cpp/`** — Frittstående C++-eksempelfiler, én per konseptmappe.
 - **`book.toml`** — mdBook-konfigurasjon. Byggutdata går til `book/`.
 
-## Kodeankere
+## Kapittelstruktur
 
-Rust-kildefiler bruker `// ANCHOR:` og `// ANCHOR_END:`-kommentarer for å markere koderegioner som blir inkludert i mdBook via `{{#rustdoc_include}}`-direktiv. Ta vare på disse ankerne ved redigering av Rust-kode, og hold ankernavnene i synk med markdown-filene som refererer til dem.
+Hvert konsept-kapittel har en fast struktur:
+
+- **`src/<konsept>/README.md`** — Kort intro (5–8 linjer) som motiverer temaet og lenker til ordlisten.
+- **`src/<konsept>/cpp.md`** — C++-perspektivet: problemer, løsninger, eksempler.
+- **`src/<konsept>/rust.md`** — Rust-perspektivet: hvordan Rust løser det samme, eksempler.
+- **`src/<konsept>/sammenlikning.md`** — Side-om-side-tabell og viktige forskjeller.
+- **`cpp/<konsept>/main.cpp`** — Kompilerbar C++-fil med alle eksempler samlet. Må kompilere med `clang++ -std=c++20`.
+- **`rust/src/<konsept>/mod.rs`** — Rust-modul med alle eksempler. Eksporterer `pub fn hello()` som kjører dem. Registreres i `rust/src/main.rs`.
+
+Kapitlet registreres i `src/SUMMARY.md` med fire sider (README, C++, Rust, sammenlikning).
+
+## Kodeankere og inkludering
+
+Både C++- og Rust-kildefiler bruker `// ANCHOR:` og `// ANCHOR_END:`-kommentarer for å markere koderegioner som inkluderes i mdBook-sidene.
+
+**Plassering av ankere i Rust:** Ankere plasseres *innenfor* funksjonskroppen, slik at bare utsagnene inkluderes — ikke funksjonsdefinisjonen. Da wrapper mdBook koden automatisk i `fn main()`, og eksemplene blir kjørbare i boka. Typedefinisjon (enum, struct, impl) som trengs av eksempelet legges i et eget anker (f.eks. `box_rekursiv_type`).
+
+**I markdown-filen:** Bruk `{{#include ...}}` for å inkludere ankeret. Legg til skjulte `#`-linjer for nødvendige `use`-importer og eventuelle typedefinisjon som koden avhenger av:
+
+```markdown
+\```rust
+# use std::rc::Rc;
+{{#include ../../rust/src/<konsept>/mod.rs:<ankernavn>}}
+\```
+```
+
+For eksempler med typedefinisjon: vis typen i en egen kodeblokk, og inkluder brukskoden i en kjørbar blokk med typedefinisjon gjentatt som skjulte `#`-linjer.
+
+**C++-ankere** wrapper hele funksjoner/blokker (ikke bare innholdet), siden C++ kodeblokker i mdBook ikke kjøres.
+
+Ta vare på ankerne ved redigering av kode, og hold ankernavnene i synk med markdown-filene som refererer til dem.
 
 ## Ordliste
 

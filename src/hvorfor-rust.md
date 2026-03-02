@@ -38,3 +38,23 @@ Rust er spesielt kjent for:
 > Kompileringssteget i Rust kan ofte oppfattes strengt, men gjennom å tvinge deg til å eksplisitt håndtere alt som kan
 > feile, og å luke ut flere klasser av feil i kompileringssteget, gjør
 > det at tiden til _debugging_ kuttes drastisk ned. Feilmeldingene fra kompilatoren gjør dette til en hyggelig oppgave.
+
+## Hvem bruker Rust?
+
+Rust brukes i økende grad av store selskaper, spesielt der ytelse og sikkerhet er viktig:
+
+* **Linux-kjernen** godtar Rust-kode siden versjon 6.1 (2022), som det andre språket ved siden av C i kjernens over
+  30-årige historie.[^linux]
+* **Microsoft** bruker Rust i Windows-kjernen og Azure-infrastruktur for å redusere minnesikkerhetsfeil.[^microsoft]
+* **Google** bruker Rust i Android, og rapporterte at andelen minnesikkerhetsfeil falt fra 76 % til 35 % etter
+  innføringen.[^android] Rust brukes også i Chromium-prosjektet.[^chromium]
+* **Amazon** bygde Firecracker, den Rust-baserte microVM-en som driver AWS Lambda og Fargate.[^firecracker]
+* **Discord** byttet fra Go til Rust for ytelseskritiske tjenester, og oppnådde betydelig lavere latens og mer
+  forutsigbar ytelse.[^discord]
+
+[^linux]: [Rust in the Linux Kernel — The Linux Kernel documentation](https://docs.kernel.org/rust/)
+[^microsoft]: [A proactive approach to more secure code — Microsoft Security Response Center](https://www.microsoft.com/en-us/msrc/blog/2019/07/a-proactive-approach-to-more-secure-code)
+[^android]: [Memory Safe Languages in Android 13 — Google Security Blog](https://security.googleblog.com/2022/12/memory-safe-languages-in-android-13.html)
+[^chromium]: [Supporting the Use of Rust in Chromium — Google Security Blog](https://security.googleblog.com/2023/01/supporting-use-of-rust-in-chromium.html)
+[^firecracker]: [Firecracker – Open Source Secure Fast microVM for Serverless Computing — AWS Open Source Blog](https://aws.amazon.com/blogs/opensource/firecracker-open-source-secure-fast-microvm-serverless/)
+[^discord]: [Why Discord is switching from Go to Rust — Discord Blog](https://discord.com/blog/why-discord-is-switching-from-go-to-rust)

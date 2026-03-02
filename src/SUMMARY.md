@@ -1,8 +1,8 @@
 # Innhold
 
 - [Introduksjon](./introduksjon.md)
-  - [Hvorfor Rust?](./hvorfor-rust.md)
   - [Hva er Rust?](./hva-er-rust.md)
+  - [Rust og andre språk](./rust-og-andre-sprak.md)
 - [Null-sikkerhet](./null_sikkerhet/README.md)
   - [C++](./null_sikkerhet/cpp.md)
   - [Rust](./null_sikkerhet/rust.md)

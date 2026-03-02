@@ -2,6 +2,10 @@
 
 - [Introduksjon](./introduksjon.md)
   - [Hva er Rust?](./hva-er-rust.md)
+- [Null-sikkerhet](./null_sikkerhet/README.md)
+  - [C++](./null_sikkerhet/cpp.md)
+  - [Rust](./null_sikkerhet/rust.md)
+  - [Sammenlikning](./null_sikkerhet/sammenlikning.md)
 - [Minnehåndtering](./minnehandtering/README.md)
   - [C++](./minnehandtering/cpp.md)
   - [Rust](./minnehandtering/rust.md)

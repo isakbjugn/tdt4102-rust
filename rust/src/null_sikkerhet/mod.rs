@@ -8,6 +8,7 @@ pub fn main() {
     if let Err(e) = result_sporsmalstegn() {
         println!("Feil: {e}");
     }
+    hashmap_eksempel();
 }
 
 fn option_grunnleggende() {

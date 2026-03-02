@@ -1,59 +1,67 @@
 # Hva er Rust?
 
-Rust er et systemprogrammeringsspråk som ble startet av Graydon Hoare hos Mozilla i 2010 og nådde versjon 1.0 i 2015. Det er designet for å gi deg samme ytelse som C og C++, men med kompilatorgarantier for [minnesikkerhet](ordliste.md#minnesikkerhet) — uten å bruke en [søppelsamler](ordliste.md#soppelsamler).
+## Hvorfor er så mange interesserte i Rust?
 
-Rust er [multiparadigme](ordliste.md#paradigme): du kan skrive imperativ kode med mutabel tilstand, funksjonell kode med iteratorer og [closures](ordliste.md#closure), og generisk kode med [traits](ordliste.md#trait) og typeparametere. Syntaksen minner om C++, mens typesystemet er inspirert av Haskell og ML.
+Rust har i ni år på rad blitt kåret til det høyest beundrede programmeringsspråket blant brukerne på Stack Overflow.
+I 2025 var det 72 % av Rust-utviklere som sa at de ville fortsette å bruke språket.
 
-For dere som allerede kan C++ er Rust spesielt interessant fordi det løser mange av de samme problemene — men med andre virkemidler. Der C++ gir deg verktøy og konvensjoner for å unngå minnefeil, gjør Rust det til en *[kompileringsfeil](ordliste.md#kompileringsfeil)* å bruke minne feil.
+![](./img/stackoverflow-2025-admired-and-desired-top-13.png)
 
-La oss plassere Rust i landskapet av programmeringsspråk med noen tabeller.
+Les gjerne:
 
-## Minnehåndtering
+* [Why the developers who use Rust love it so much](https://stackoverflow.blog/2020/06/05/why-the-developers-who-use-rust-love-it-so-much/)
+* [7 Reasons to Use Rust for Your Next Development Project](https://geekflare.com/reasons-to-use-rust/)
 
-|  | **Uten søppelsamler** | **Med søppelsamler** |
-|---|---|---|
-| **Minnesikker** | **Rust** | Java, Go, C#, Python, Haskell |
-| **Ikke minnesikker** | C, C++ | |
+## Hva er greia med Rust?
 
-Rust er alene i øvre venstre kvadrant — det eneste utbredte språket som er minnesikkert uten søppelsamler. Dette er mulig takket være *[eierskapsmodellen](ordliste.md#eierskap)*: kompilatoren sporer hvem som eier hver verdi, og frigjør minne automatisk når eieren går ut av [scope](ordliste.md#scope). Ingen garbage collector, ingen manuell `free`.
+Rust er et systemprogrammeringsspråk som ble startet av Graydon Hoare hos Mozilla i 2010 og nådde versjon 1.0 i 2015.
+Det er designet for å gi deg samme ytelse som C og C++, men med kompilatorgarantier for
+[minnesikkerhet](ordliste.md#minnesikkerhet) — uten å bruke en [søppelsamler](ordliste.md#soppelsamler).
 
-## Typesystem
+Rust er [multiparadigme](ordliste.md#paradigme): du kan skrive imperativ kode med mutabel tilstand, funksjonell kode med
+iteratorer og [closures](ordliste.md#closure), og generisk kode med [traits](ordliste.md#trait) og typeparametere.
+Syntaksen minner om C++, mens typesystemet er inspirert av Haskell og ML. Rust kompilerer til binærkode, og kan også
+kompilere til [WebAssembly](https://webassembly.org/), som gjør det mulig å dra nytte av den høye ytelsen i
+webapplikasjoner.
 
-|  | **Statisk typet** | **Dynamisk typet** |
-|---|---|---|
-| **Strengt typet** | **Rust**, Haskell, Java, Kotlin | Python, Ruby |
-| **Svakt typet** | C, C++ | JavaScript, PHP |
+Rust er spesielt kjent for:
 
-Rust er både statisk og strengt typet. C++ er statisk men *svakt* typet — det tillater implisitte konverteringer, `void*` og `reinterpret_cast`. Python er dynamisk men strengt (ingen implisitt typetvang). JavaScript er både dynamisk og svakt (`"5" + 3 === "53"`).
+* **Null-sikkerhet**: Rust har ingen null-pekere, og håndterer i stedet fravær av verdi gjennom `Option<T>`, som tvinger
+  utviklere til å eksplisitt håndtere tilfeller der en verdi kan være fraværende.
 
-## Abstraksjonsnivå
+* **Minnesikkerhet**: Rust sikrer minnesikkerhet ved kompileringstid. Det gjør den ved å bruke en variabels _scope_.
 
-|  | **Nullkostnad-abstraksjoner** | **Abstraksjoner med runtime-kostnad** |
-|---|---|---|
-| **Høynivå-ergonomi** | **Rust** | Java, Python, Go, Haskell, Kotlin |
-| **Lavnivå-ergonomi** | C, C++ | |
+* **Tråd-sikkerhet**: På grunn av hvordan Rust håndterer referanser til minne (gjennom konseptene _låning_ og
+  _flytting_,
+  som håndheves av _lånesystemet_ (eng. _borrow checker_) og variablers levetid, er Rust garantert å være tråd-sikkert.
 
-Rust gir deg høynivå-ergonomi — iteratorer, closures, pattern matching, generics — som kompileres til like effektiv maskinkode som håndskrevet C. Dette kalles *[nullkostnad-abstraksjoner](ordliste.md#nullkostnad-abstraksjon)*. De fleste høynivåspråk betaler for sine abstraksjoner med søppelsamler, [virtuell dispatch](ordliste.md#virtuell-dispatch) eller [JIT-kompilering](ordliste.md#jit-kompilering). C og C++ er lette, men tilbyr færre ergonomiske abstraksjoner ut av boksen.
+* **Cargo**: Litt som _npm_ + _ESlint_ + _prettier_ + _Jest_. Tar seg av å kompilere koden, installere pakker, håndtere
+  avhengigheter,
+  lintsjekke koden din, kjøre tester. _Batterier inkludert_, med andre ord.
 
-## Null-sikkerhet
+* **En hyggelig kompilator**: Rust-kompilatoren er spesielt velskreven, og kan ofte fortelle deg nøyaktig hvor i koden
+  noe er feil, og kan foreslå hva du bør gjøre i stedet. (Cargo!)
 
-|  | **Null finnes i språket** | **Null finnes ikke** |
-|---|---|---|
-| **Kompilator håndhever håndtering** | Kotlin, Swift | **Rust**, Haskell |
-| **Kompilator håndhever ikke** | C, C++, Java, Go, JavaScript | |
+> Kompileringssteget i Rust kan ofte oppfattes strengt, men gjennom å tvinge deg til å eksplisitt håndtere alt som kan
+> feile, og å luke ut flere klasser av feil i kompileringssteget, gjør
+> det at tiden til _debugging_ kuttes drastisk ned. Feilmeldingene fra kompilatoren gjør dette til en hyggelig oppgave.
 
-Rust har ikke `null`. I stedet bruker det `Option<T>`, som enten er `Some(verdi)` eller `None`. Kompilatoren tvinger deg til å håndtere begge variantene — du kan ikke «glemme» å sjekke for manglende verdier.
+## Hvem bruker Rust?
 
-## C++ vs Rust
+Rust brukes i økende grad av store selskaper, spesielt der ytelse og sikkerhet er viktig:
 
-| Egenskap | C++ | Rust |
-|----------|-----|------|
-| Ytelse | Høy (ingen GC) | Høy (ingen GC) |
-| Minnesikkerhet | Ingen garanti | Garantert av kompilator |
-| Null-sikkerhet | `nullptr` uten garanti | `Option<T>` med kompilatorsjekk |
-| Trådsikkerhet | Programmererens ansvar | Garantert av kompilator |
-| Feilhåndtering | Unntak (`throw`/`catch`) | `Result<T, E>` med `?`-operator |
+* **Linux-kjernen** godtar Rust-kode siden versjon 6.1 (2022), som det andre språket ved siden av C i kjernens over
+  30-årige historie.[^linux]
+* **Microsoft** bruker Rust i Windows-kjernen og Azure-infrastruktur for å redusere minnesikkerhetsfeil.[^microsoft]
+* **Google** bruker Rust i Android, og rapporterte at andelen minnesikkerhetsfeil falt fra 76 % til 35 % etter
+  innføringen.[^android] Rust brukes også i Chromium-prosjektet.[^chromium]
+* **Amazon** bygde Firecracker, den Rust-baserte microVM-en som driver AWS Lambda og Fargate.[^firecracker]
+* **Discord** byttet fra Go til Rust for ytelseskritiske tjenester, og oppnådde betydelig lavere latens og mer
+  forutsigbar ytelse.[^discord]
 
-## Oppsummering
-
-Rust flytter feil fra kjøretid til kompileringstid. Mye av det dere lærer om minnefeil, [dangling pointers](ordliste.md#dangling-pointer) og data races i C++ er nettopp det Rust er designet for å forhindre — ikke gjennom konvensjoner, men gjennom språkets typesystem.
+[^linux]: [Rust in the Linux Kernel — The Linux Kernel documentation](https://docs.kernel.org/rust/)
+[^microsoft]: [A proactive approach to more secure code — Microsoft Security Response Center](https://www.microsoft.com/en-us/msrc/blog/2019/07/a-proactive-approach-to-more-secure-code)
+[^android]: [Memory Safe Languages in Android 13 — Google Security Blog](https://security.googleblog.com/2022/12/memory-safe-languages-in-android-13.html)
+[^chromium]: [Supporting the Use of Rust in Chromium — Google Security Blog](https://security.googleblog.com/2023/01/supporting-use-of-rust-in-chromium.html)
+[^firecracker]: [Firecracker – Open Source Secure Fast microVM for Serverless Computing — AWS Open Source Blog](https://aws.amazon.com/blogs/opensource/firecracker-open-source-secure-fast-microvm-serverless/)
+[^discord]: [Why Discord is switching from Go to Rust — Discord Blog](https://discord.com/blog/why-discord-is-switching-from-go-to-rust)

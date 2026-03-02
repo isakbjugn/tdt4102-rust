@@ -12,10 +12,15 @@ Les gjerne:
 
 ## Hva er greia med Rust?
 
-Rust er et multi-paradigmespråk, spesielt egnet for oppgaver som krever høy ytelse, pålitelighet og parallellitet. Det
-kompilerer til binærkode, og brukes kanskje i størst grad for systemutvikling, det en ofte kan bruke C og C++ til. Rust
-kan også kompilere til [WebAssembly](https://webassembly.org/), som gjør det mulig å dra nytte av den høye ytelsen også
-i webapplikasjoner.
+Rust er et systemprogrammeringsspråk som ble startet av Graydon Hoare hos Mozilla i 2010 og nådde versjon 1.0 i 2015.
+Det er designet for å gi deg samme ytelse som C og C++, men med kompilatorgarantier for
+[minnesikkerhet](ordliste.md#minnesikkerhet) — uten å bruke en [søppelsamler](ordliste.md#soppelsamler).
+
+Rust er [multiparadigme](ordliste.md#paradigme): du kan skrive imperativ kode med mutabel tilstand, funksjonell kode med
+iteratorer og [closures](ordliste.md#closure), og generisk kode med [traits](ordliste.md#trait) og typeparametere.
+Syntaksen minner om C++, mens typesystemet er inspirert av Haskell og ML. Rust kompilerer til binærkode, og kan også
+kompilere til [WebAssembly](https://webassembly.org/), som gjør det mulig å dra nytte av den høye ytelsen i
+webapplikasjoner.
 
 Rust er spesielt kjent for:
 

@@ -7,6 +7,10 @@
   - [C++](./null_sikkerhet/cpp.md)
   - [Rust](./null_sikkerhet/rust.md)
   - [Sammenlikning](./null_sikkerhet/sammenlikning.md)
+- [Mønstermatching](./monstermatching/README.md)
+  - [C++](./monstermatching/cpp.md)
+  - [Rust](./monstermatching/rust.md)
+  - [Sammenlikning](./monstermatching/sammenlikning.md)
 - [Minnehåndtering](./minnehandtering/README.md)
   - [C++](./minnehandtering/cpp.md)
   - [Rust](./minnehandtering/rust.md)
@@ -27,3 +31,4 @@
 ---
 
 [Ordliste](./ordliste.md)
+[Tillegg: `std::variant` og `std::visit`](./tillegg/variant_og_visit.md)

@@ -23,12 +23,17 @@
   - [C++](./raii/cpp.md)
   - [Rust](./raii/rust.md)
   - [Sammenlikning](./raii/sammenlikning.md)
-- [Levetider](./levetider/README.md)
-  - [C++](./levetider/cpp.md)
-  - [Rust](./levetider/rust.md)
-  - [Sammenlikning](./levetider/sammenlikning.md)
+
+---
+
+# Tillegg
+
+- [`std::variant` og `std::visit`](./tillegg/variant_og_visit.md)
+- [Levetider](./tillegg/levetider/README.md)
+  - [C++](./tillegg/levetider/cpp.md)
+  - [Rust](./tillegg/levetider/rust.md)
+  - [Sammenlikning](./tillegg/levetider/sammenlikning.md)
 
 ---
 
 [Ordliste](./ordliste.md)
-[Tillegg: `std::variant` og `std::visit`](./tillegg/variant_og_visit.md)

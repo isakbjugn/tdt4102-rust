@@ -42,7 +42,6 @@ std::optional<int> finn_foerste_partall(int* tall, int antall) {
 // ANCHOR_END: optional_eksempel
 
 // ANCHOR: expected_eksempel
-#if __cpp_lib_expected >= 202211L
 #include <expected>
 
 std::expected<int, std::string> del(int teller, int nevner) {
@@ -51,7 +50,6 @@ std::expected<int, std::string> del(int teller, int nevner) {
     }
     return teller / nevner;
 }
-#endif
 // ANCHOR_END: expected_eksempel
 
 int main() {

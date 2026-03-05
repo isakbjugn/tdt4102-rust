@@ -8,7 +8,7 @@
 | Dispatch | `std::visit()` + lambdaer¹ | `match`-uttrykk |
 | [Uttømmende sjekk](../ordliste.md#uttommende-sjekk) | Ikke håndhevet | Kompilatorgaranti |
 | [Destrukturering](../ordliste.md#destrukturering) | `auto [x, y]` (begrenset) | Full støtte i alle mønstre |
-| Vakter | Nei (må bruke `if` i lambda) | Ja (`if`-vakter i match-armer) |
+| Sjekker (eng. *match guards*) | Nei (må bruke `if` i lambda) | Ja (`if`-sjekker i match-armer) |
 | Som uttrykk | `std::visit` returnerer verdi¹ | `match` er et uttrykk |
 | `switch` | Kun heltallstyper | `match` fungerer på alle typer |
 
@@ -68,7 +68,7 @@ Legg merke til at `std::variant`-eksempelet over bruker `std::holds_alternative`
 |-----|------|
 | `std::holds_alternative<std::string>(verdi)` | `matches!(figur, Figur::Sirkel(_))` |
 
-Begge returnerer `true`/`false`. Forskjellen er at Rusts `matches!` også støtter destrukturering og vakter:
+Begge returnerer `true`/`false`. Forskjellen er at Rusts `matches!` også støtter destrukturering og sjekker:
 
 ```rust
 # enum Figur {
@@ -101,7 +101,7 @@ I C++ måtte du kombinert `std::holds_alternative` med `std::get` og en separat 
 |-|-----|------|
 | **Tupler** | `auto [x, y]` | `let (x, y)` |
 | **Nestede mønstre** | Nei | `(0, (x, _))` |
-| **I match-armer** | Nei | Ja, med verdier og vakter |
+| **I match-armer** | Nei | Ja, med verdier og sjekker |
 | **I løkker** | `auto& [k, v]` i range-for | `(k, v)` i `for`-løkker |
 
 ## Nøkkelforskjellen

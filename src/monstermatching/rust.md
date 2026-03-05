@@ -1,6 +1,6 @@
 # Mønstermatching i Rust
 
-I forrige kapittel så vi `match` og `if let` brukt på `Option` og `Result`. Her ser vi hvordan [mønstermatching](../ordliste.md#monstermatching) brukes på egendefinerte typer og i flere sammenhenger — fra [destrukturering](../ordliste.md#destrukturering) av tupler til vakter og `let-else`.
+I forrige kapittel så vi `match` og `if let` brukt på `Option` og `Result`. Her ser vi hvordan [mønstermatching](../ordliste.md#monstermatching) brukes på egendefinerte typer og i flere sammenhenger — fra [destrukturering](../ordliste.md#destrukturering) av tupler til sjekker i match-armer og `let-else`.
 
 ## Enumer i Rust — mer enn bare konstanter
 
@@ -46,15 +46,15 @@ Mønstre i Rust kan destrukturere tupler, structer og nestede verdier — både 
 
 Merk at Rust kan matche *konstante verdier* direkte i mønsteret (`(0, 0)`) og kombinere dem med variabler (`(x, 0)`). Dette gir svært kompakt og lesbar kode for forgreining basert på struktur.
 
-## Vakter i match-armer
+## Sjekker i match-armer
 
-Noen ganger trenger du en ekstra betingelse utover selve mønsteret. Da bruker du en *vakt* — et `if`-uttrykk etter mønsteret:
+Noen ganger trenger du en ekstra betingelse utover selve mønsteret. Da bruker du en *sjekk* (eng. *match guard*) — et `if`-uttrykk etter mønsteret:
 
 ```rust
 {{#include ../../rust/src/monstermatching/mod.rs:match_vakter}}
 ```
 
-Vakter lar deg kombinere strukturell matching med vilkårlige betingelser. I C++ måtte du brukt `if`/`else if`-kjeder eller lagt logikken inne i en `std::visit`-lambda.
+Sjekker lar deg kombinere strukturell matching med vilkårlige betingelser. I C++ måtte du brukt `if`/`else if`-kjeder for å oppnå det samme.
 
 ## `let-else`
 

@@ -60,6 +60,29 @@ match figur {
 
 Legger du til en ny variant i `enum`-en, vil kompilatoren peke ut *alle* steder i koden som mangler den nye varianten. I C++ gir `switch` på `enum`-verdier kun en advarsel (ikke en feil), og `if/else if`-kjeder gir ingenting.
 
+## Rask variant-sjekk: `holds_alternative` vs. `matches!`
+
+Legg merke til at `std::variant`-eksempelet over bruker `std::holds_alternative` for å sjekke hvilken type varianten inneholder. Rust har en tilsvarende snarvei — `matches!`-makroen:
+
+| C++ | Rust |
+|-----|------|
+| `std::holds_alternative<std::string>(verdi)` | `matches!(figur, Figur::Sirkel(_))` |
+
+Begge returnerer `true`/`false`. Forskjellen er at Rusts `matches!` også støtter destrukturering og vakter:
+
+```rust
+# enum Figur {
+#     Sirkel(f64),
+#     Rektangel(f64, f64),
+#     Trekant(f64, f64, f64),
+# }
+# let figur = Figur::Sirkel(5.0);
+// Sjekk variant + betingelse i ett uttrykk
+let er_stor_sirkel = matches!(figur, Figur::Sirkel(r) if r > 10.0);
+```
+
+I C++ måtte du kombinert `std::holds_alternative` med `std::get` og en separat `if`-sjekk for å oppnå det samme.
+
 ## Destrukturering
 
 **Rust** støtter [destrukturering](../ordliste.md#destrukturering) på alle nivåer — tupler, structer, enumer, nestede mønstre, og kombinasjoner:

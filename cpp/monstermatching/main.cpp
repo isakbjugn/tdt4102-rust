@@ -63,6 +63,10 @@ void variant_eksempel() {
 
     // Hvilken type er aktiv?
     std::cout << "Aktiv index: " << verdi.index() << std::endl; // 2 (string)
+
+    // std::holds_alternative sjekker om varianten holder en bestemt type
+    std::cout << "Er string? " << std::holds_alternative<std::string>(verdi) << std::endl; // 1 (true)
+    std::cout << "Er int?    " << std::holds_alternative<int>(verdi) << std::endl;          // 0 (false)
 }
 // ANCHOR_END: variant_grunnleggende
 

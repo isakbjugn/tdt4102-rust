@@ -6,7 +6,7 @@
 
 I [smartpekere-kapittelet](../smartpekere/rust.md) så vi `Rc<T>` for delt eierskap. `Rc<T>` bruker en vanlig (ikke-atomisk) teller, og er derfor *ikke* trådsikker. For deling mellom tråder trenger vi `Arc<T>`.
 
-I [RAII-kapittelet](../raii/README.md) så vi at RAII-mønsteret brukes til å automatisk frigjøre ressurser. Et klassisk bruksområde er låser (mutexer), der RAII sikrer at låsen alltid slippes — selv ved tidlig retur.
+I [tillegget om RAII](./raii.md) ser vi at RAII-mønsteret brukes til å automatisk frigjøre ressurser. Et klassisk bruksområde er låser (mutexer), der RAII sikrer at låsen alltid slippes — selv ved tidlig retur.
 
 ## `Arc<T>` — atomisk referansetelling (Rust)
 

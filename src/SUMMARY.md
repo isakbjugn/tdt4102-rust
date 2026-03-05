@@ -28,15 +28,12 @@
   - [C++](./smartpekere/cpp.md)
   - [Rust](./smartpekere/rust.md)
   - [Sammenlikning](./smartpekere/sammenlikning.md)
-- [RAII](./raii/README.md)
-  - [C++](./raii/cpp.md)
-  - [Rust](./raii/rust.md)
-  - [Sammenlikning](./raii/sammenlikning.md)
 
 ---
 
 # Tillegg
 
+- [RAII](./tillegg/raii.md)
 - [`std::variant` og `std::visit`](./tillegg/variant_og_visit.md)
 - [Trådsikkerhet](./tillegg/traader.md)
 - [`RefCell<T>` og indre mutabilitet](./tillegg/refcell.md)

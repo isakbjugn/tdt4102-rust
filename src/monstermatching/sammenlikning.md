@@ -14,23 +14,31 @@
 
 *¹ Ikke dekket i TDT4102 — se [tillegget om `std::variant` og `std::visit`](../tillegg/variant_og_visit.md) for detaljer.*
 
-## Sumtyper: `enum` som datastruktur
+## Sumtyper: `std::variant` vs. `enum`
 
-I C++-kapittelet så vi at `if/else if`-kjeder med strenger er feilutsatte: ingen kompilatorhjelp, ingen destrukturering, og skrivefeil gir feil kjøretidsoppførsel. Grunnproblemet er at C++ ikke har noen god måte å representere «én av flere varianter med ulike data» i pensum.
+I C++-kapittelet så vi at `if/else if`-kjeder med strenger er feilutsatte: ingen kompilatorhjelp, ingen destrukturering, og skrivefeil gir feil kjøretidsoppførsel. Grunnproblemet er at C++ mangler en god måte å representere «én av flere varianter med ulike data».
 
-Rust har `enum` — en [sumtype](../ordliste.md#sumtype) der hver variant kan bære ulike data:
+C++17 introduserte faktisk en [sumtype](../ordliste.md#sumtype) for dette: `std::variant`. Den kan holde én av flere angitte typer:
+
+```cpp
+{{#include ../../cpp/monstermatching/main.cpp:variant_grunnleggende}}
+```
+
+Rust har `enum` — også en sumtype, men som et språkkonsept med navngitte varianter:
 
 ```rust
 {{#include ../../rust/src/monstermatching/mod.rs:figur_type}}
 ```
 
-Typen `Figur` uttrykker *direkte* i typesystemet at en figur er enten en sirkel (med radius), et rektangel (med bredde og høyde), eller en trekant (med tre sider). Sammenlignet med C++-versjonen der figurtypen var en streng:
+Nøkkelforskjellen er at Rusts varianter har *navn* (`Sirkel`, `Rektangel`), mens `std::variant` sine varianter identifiseres av *type* (`int`, `double`). Det betyr at en `std::variant` ikke kan ha to varianter av samme type uten workarounds, mens en Rust-`enum` kan ha `Svar(String)` og `Feilmelding(String)` uten problem.
+
+Rusts `enum` har dessuten disse fordelene over C++-tilnærmingen:
 
 - **Kompilatoren garanterer** at du bare bruker data som varianten faktisk har.
 - **Skrivefeil er umulige** — `Figur::Sirkle` gir en [kompileringsfeil](../ordliste.md#kompileringsfeil), mens `"sirkle"` i en streng ikke gjør det.
 - **Hver variant bærer nøyaktig sine data** — ingen ubrukte parametere.
 
-> C++ har `std::variant` (C++17) som også er en sumtype, men den er ikke del av TDT4102-pensum. Se [tillegget](../tillegg/variant_og_visit.md) for en sammenligning.
+> For å utføre dispatch på en `std::variant` bruker C++ `std::visit` med lambdaer og en `Overloaded`-template — avanserte konsepter som ikke er dekket i TDT4102. Se [tillegget om `std::variant` og `std::visit`](../tillegg/variant_og_visit.md) for detaljer.
 
 ## Uttømmende sjekk
 

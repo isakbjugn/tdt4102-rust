@@ -11,4 +11,3 @@ Prosjektet tar for seg sentrale konsepter i C++:
 - **Minnehåndtering** - manuell [allokering](./ordliste.md#allokering) med `new`/`delete` vs. Rusts [eierskap-modell](./ordliste.md#eierskap)
 - **Lån og referanser** - dangling pointers og udefinert oppførsel i C++ vs. Rusts [lånesjekker](./ordliste.md#laanesjekkeren) og [låneregler](./ordliste.md#laaneregler)
 - **Smartpekere** - `unique_ptr`, `shared_ptr`, `weak_ptr` vs. Rusts `Box`, `Rc`, `Arc`
-- **RAII** - Resource Acquisition Is Initialization, et mønster begge språk bygger på

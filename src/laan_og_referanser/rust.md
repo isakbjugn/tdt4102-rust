@@ -51,4 +51,4 @@ println!("{ref_til_forste}");
 
 ## Videre lesning
 
-Når kompilatoren ikke automatisk kan avgjøre hvor lenge en referanse er gyldig, trenger du *levetidsannotasjoner*. Dette er et mer avansert tema som dekkes i [tillegget om levetider](../tillegg/levetider/README.md).
+Når kompilatoren ikke automatisk kan avgjøre hvor lenge en referanse er gyldig, trenger du *levetidsannotasjoner*. Dette er et mer avansert tema som dekkes i [tillegget om levetidsannotasjoner](../tillegg/levetider.md).

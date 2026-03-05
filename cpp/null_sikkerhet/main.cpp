@@ -58,9 +58,9 @@ std::optional<int> partall_dobbel(int* tall, int antall) {
         .transform([](int n) { return n * 2; }); // Som Rusts .map()
 }
 
-std::optional<int> partall_eller_standard(int* tall, int antall) {
+int partall_eller_null(int* tall, int antall) {
     return finn_foerste_partall(tall, antall)
-        .or_else([]() -> std::optional<int> { return 0; }); // Som Rusts .or_else()
+        .value_or(0); // Som Rusts .unwrap_or()
 }
 // ANCHOR_END: optional_monadisk
 
@@ -96,8 +96,8 @@ int main() {
     auto dobbel2 = partall_dobbel(tall4, 3);
     std::cout << "Dobbel: " << dobbel2.value_or(-1) << std::endl;
 
-    auto med_standard = partall_eller_standard(tall3, 3);
-    std::cout << "Med standard: " << med_standard.value() << std::endl;
+    auto med_standard = partall_eller_null(tall3, 3);
+    std::cout << "Med standard: " << med_standard << std::endl;
 
     return 0;
 }

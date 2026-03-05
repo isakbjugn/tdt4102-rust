@@ -2,9 +2,27 @@
 
 I forrige kapittel så vi `match` og `if let` brukt på `Option` og `Result`. Her ser vi hvordan [mønstermatching](../ordliste.md#monstermatching) brukes på egendefinerte typer og i flere sammenhenger — fra [destrukturering](../ordliste.md#destrukturering) av tupler til vakter og `let-else`.
 
-## Egendefinerte enumer med data
+## Enumer i Rust — mer enn bare konstanter
 
-Rusts `enum` er en [sumtype](../ordliste.md#sumtype) — hver variant kan bære ulike data. `match` lar deg destrukturere variantene og bruke dataen direkte:
+Fra C++ kjenner du `enum class` som en liste med navngitte konstanter:
+
+```cpp
+enum class Farge { Rod, Gronn, Bla };
+```
+
+Rusts `enum` kan det samme, men har en avgjørende tilleggsfunksjon: hver variant kan *bære data*. Dette gjør `enum` til en [sumtype](../ordliste.md#sumtype) — en type som kan være én av flere varianter, der hver variant har sin egen datastruktur:
+
+```rust
+{{#include ../../rust/src/monstermatching/mod.rs:figur_type}}
+```
+
+Her er `Figur` en type med tre varianter: `Sirkel` har én `f64` (radius), `Rektangel` har to (bredde og høyde), og `Trekant` har tre (sidene). Du trenger ikke separate klasser eller en streng-basert `if/else if`-kjede — typen selv beskriver alle mulighetene.
+
+`Option<T>` og `Result<T, E>` fra forrige kapittel er også vanlige enumer definert på akkurat denne måten.
+
+## `match` med destrukturering
+
+`match` lar deg forgrene basert på hvilken variant en enum har, og samtidig trekke ut dataen:
 
 ```rust
 # use std::f64::consts::PI;
@@ -16,13 +34,7 @@ Rusts `enum` er en [sumtype](../ordliste.md#sumtype) — hver variant kan bære 
 {{#include ../../rust/src/monstermatching/mod.rs:figur_match}}
 ```
 
-Typen `Figur` er definert slik:
-
-```rust
-{{#include ../../rust/src/monstermatching/mod.rs:figur_type}}
-```
-
-Kompilatoren gir en [uttømmende sjekk](../ordliste.md#uttommende-sjekk): legger du til en ny variant i `Figur` uten å oppdatere `match`-uttrykket, får du en [kompileringsfeil](../ordliste.md#kompileringsfeil). Dette er en garanti som C++ sin `switch` og `std::visit` ikke tilbyr.
+Kompilatoren gir en [uttømmende sjekk](../ordliste.md#uttommende-sjekk): legger du til en ny variant i `Figur` uten å oppdatere `match`-uttrykket, får du en [kompileringsfeil](../ordliste.md#kompileringsfeil). Dette er en garanti som C++ sin `switch` ikke tilbyr.
 
 ## Destrukturering
 

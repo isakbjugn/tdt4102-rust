@@ -14,7 +14,7 @@ Tabellen under oppsummerer de viktigste forskjellene mellom C++ og Rust når det
 For å fange minnefeil i C++ kan du bruke Address Sanitizer (ASan):
 
 ```bash
-clang++ -std=c++20 -fsanitize=address -g cpp/minnehandtering/main.cpp -o main && ./main
+clang++ -std=c++23 -fsanitize=address -g cpp/minnehandtering/main.cpp -o main && ./main
 ```
 
 ASan gir tydelige feilmeldinger for use-after-free, buffer overflow, og andre minnefeil — men kun ved kjøretid, ikke kompilering. Rusts kompilator fanger de fleste av disse feilene allerede ved kompilering.

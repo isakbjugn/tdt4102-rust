@@ -7,7 +7,7 @@ Et undervisningsopplegg til TDT4102 Prosedyre- og objektorientert programmering,
 ### Krav
 
 - [Rust toolchain](https://rustup.rs/) (for mdBook og Rust-eksempel)
-- C++20-kompilator (clang++ eller g++)
+- C++23-kompilator (clang++ eller g++)
 
 ### Installer mdBook
 
@@ -26,7 +26,7 @@ mdbook serve --open
 **C++:**
 
 ```bash
-clang++ -std=c++20 cpp/minnehandtering/main.cpp -o main && ./main
+clang++ -std=c++23 cpp/minnehandtering/main.cpp -o main && ./main
 ```
 
 **Rust:**

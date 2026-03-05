@@ -24,15 +24,15 @@ mdbook build
 # Bygg og kjør Rust-eksempler
 cd rust && cargo run
 
-# Bygg og kjør C++-eksempler (krever C++20-kompilator)
-clang++ -std=c++20 cpp/minnehandtering/main.cpp -o main && ./main
+# Bygg og kjør C++-eksempler (krever C++23-kompilator)
+clang++ -std=c++23 cpp/minnehandtering/main.cpp -o main && ./main
 ```
 
 ## Arkitektur
 
 - **`src/`** — mdBook-kilder i markdown. `SUMMARY.md` definerer innholdslisten.
 - **`rust/`** — Cargo-prosjekt (edition 2024). Moduler speiler bokstrukturen (f.eks. `src/minnehandtering/`).
-- **`cpp/`** — Frittstående C++-eksempelfiler (C++20), én per konseptmappe.
+- **`cpp/`** — Frittstående C++-eksempelfiler (C++23), én per konseptmappe.
 - **`book.toml`** — mdBook-konfigurasjon. Byggutdata går til `book/`.
 
 ## Kapittelstruktur

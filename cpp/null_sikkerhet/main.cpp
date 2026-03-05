@@ -52,6 +52,18 @@ std::expected<int, std::string> del(int teller, int nevner) {
 }
 // ANCHOR_END: expected_eksempel
 
+// ANCHOR: optional_monadisk
+std::optional<int> partall_dobbel(int* tall, int antall) {
+    return finn_foerste_partall(tall, antall)
+        .transform([](int n) { return n * 2; }); // Som Rusts .map()
+}
+
+int partall_eller_null(int* tall, int antall) {
+    return finn_foerste_partall(tall, antall)
+        .value_or(0); // Som Rusts .unwrap_or()
+}
+// ANCHOR_END: optional_monadisk
+
 int main() {
     // Eksempel 1: Dereferering av nullptr
     // skriv_lengde(nullptr); // Ville krasjet — UB
@@ -67,6 +79,7 @@ int main() {
     // skriv_karakter(karakterer, "Per"); // UB — "Per" finnes ikke
 
     // Eksempel 4: std::optional
+    // ANCHOR: optional_has_value
     int tall2[] = {1, 3, 5};
     auto opt = finn_foerste_partall(tall2, 3);
     if (opt.has_value()) {
@@ -74,6 +87,19 @@ int main() {
     } else {
         std::cout << "Ingen partall funnet" << std::endl;
     }
+    // ANCHOR_END: optional_has_value
+
+    // Eksempel 5: Monadiske operasjoner (C++23)
+    int tall3[] = {1, 3, 5};
+    auto dobbel = partall_dobbel(tall3, 3);
+    std::cout << "Dobbel: " << dobbel.value_or(-1) << std::endl;
+
+    int tall4[] = {1, 4, 7};
+    auto dobbel2 = partall_dobbel(tall4, 3);
+    std::cout << "Dobbel: " << dobbel2.value_or(-1) << std::endl;
+
+    auto med_standard = partall_eller_null(tall3, 3);
+    std::cout << "Med standard: " << med_standard << std::endl;
 
     return 0;
 }

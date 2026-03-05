@@ -28,6 +28,25 @@ void kategoriser_med_switch(int tall) {
 // switch (std::make_pair(1, 2)) { ... } // Kompileringsfeil!
 // ANCHOR_END: switch_begrensninger
 
+// ANCHOR: if_else_kjede
+void kategoriser_figur(const std::string& type, double a, double b, double c) {
+    double areal;
+    if (type == "sirkel") {
+        areal = 3.14159 * a * a;
+    } else if (type == "rektangel") {
+        areal = a * b;
+    } else if (type == "trekant") {
+        // Herons formel
+        double s = (a + b + c) / 2.0;
+        areal = std::sqrt(s * (s - a) * (s - b) * (s - c));
+    } else {
+        std::cout << "Ukjent figur: " << type << std::endl;
+        return;
+    }
+    std::cout << type << ": areal = " << areal << std::endl;
+}
+// ANCHOR_END: if_else_kjede
+
 // ANCHOR: variant_grunnleggende
 void variant_eksempel() {
     // std::variant kan holde en av flere typer
@@ -114,6 +133,11 @@ int main() {
     std::cout << "--- switch-begrensninger ---" << std::endl;
     kategoriser_med_switch(1);
     kategoriser_med_switch(42);
+
+    std::cout << "\n--- if/else if-kjede ---" << std::endl;
+    kategoriser_figur("sirkel", 5.0, 0, 0);
+    kategoriser_figur("rektangel", 4.0, 6.0, 0);
+    kategoriser_figur("trekant", 3.0, 4.0, 5.0);
 
     std::cout << "\n--- std::variant ---" << std::endl;
     variant_eksempel();

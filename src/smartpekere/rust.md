@@ -49,7 +49,7 @@ Noen ganger trenger flere deler av programmet å eie samme verdi. `Rc<T>` ([refe
 {{#include ../../rust/src/smartpekere/mod.rs:rc_counting}}
 ```
 
-> **Merk:** `Rc<T>` er *ikke* trådsikker. Bruk `Arc<T>` for deling mellom tråder.
+> **Merk:** `Rc<T>` er *ikke* trådsikker. For deling mellom tråder finnes `Arc<T>` — se [tillegget om trådsikkerhet](../tillegg/traader.md).
 
 ## `Weak<T>` — bryte sykluser
 
@@ -78,31 +78,6 @@ Akkurat som i C++ kan sykliske referanser føre til [minnelekkasjer](../ordliste
 
 For å bruke verdien fra en `Weak<T>` kaller du `.upgrade()`, som returnerer `Option<Rc<T>>` — `None` hvis verdien er frigjort.
 
-## `Arc<T>` — atomisk referansetelling
-
-`Arc<T>` er den trådsikre varianten av `Rc<T>`. Den bruker atomiske operasjoner for referansetelleren, slik at den trygt kan deles mellom tråder:
-
-```rust
-# use std::sync::Arc;
-# use std::thread;
-{{#include ../../rust/src/smartpekere/mod.rs:arc_grunnleggende}}
-```
-
-Rusts typesystem håndhever dette: `Rc<T>` implementerer ikke `Send`-traiten, så kompilatoren nekter å sende den til en annen tråd. Du *må* bruke `Arc<T>` for [trådsikkerhet](../ordliste.md#traadsikkerhet).
-
-## `RefCell<T>` — indre mutabilitet
-
-Normalt sjekker Rust lånereglene ved kompilering: enten én muterbar referanse, eller flere uforanderlige. `RefCell<T>` flytter denne sjekken til kjøretid, noe som muliggjør [indre mutabilitet](../ordliste.md#indre-mutabilitet):
-
-```rust
-# use std::cell::RefCell;
-{{#include ../../rust/src/smartpekere/mod.rs:refcell_grunnleggende}}
-```
-
-Hvis du bryter lånereglene ved kjøretid (f.eks. to muterbare lån samtidig), panicker programmet i stedet for å gi [udefinert oppførsel](../ordliste.md#udefinert-oppforsel).
-
-`RefCell<T>` kombineres ofte med `Rc<T>` som `Rc<RefCell<T>>` — delt eierskap med mulighet for mutering.
-
 ## Når du trenger smartpekere
 
 | Behov | Type | Merknad |
@@ -110,7 +85,9 @@ Hvis du bryter lånereglene ved kjøretid (f.eks. to muterbare lån samtidig), p
 | Heap-allokering | `Box<T>` | Enkleste valg, enkel eierskap |
 | Rekursive typer | `Box<T>` | Bryter rekursjon med fast størrelse |
 | Delt eierskap (én tråd) | `Rc<T>` | Referansetelling |
-| Delt eierskap (flere tråder) | `Arc<T>` | Atomisk referansetelling |
 | Bryte sykluser | `Weak<T>` | Brukes med `Rc`/`Arc` |
-| Mutering gjennom delt referanse | `RefCell<T>` | Låneregler ved kjøretid |
-| Delt + muterbar (én tråd) | `Rc<RefCell<T>>` | Vanlig kombinasjon |
+| Delt eierskap (flere tråder) | `Arc<T>`¹ | Atomisk referansetelling |
+| Mutering gjennom delt referanse | `RefCell<T>`² | Låneregler ved kjøretid |
+
+*¹ `Arc<T>` krever forståelse av tråder — se [tillegget om trådsikkerhet](../tillegg/traader.md).*
+*² `RefCell<T>` krever forståelse av låneregler — se [tillegget om `RefCell<T>`](../tillegg/refcell.md).*

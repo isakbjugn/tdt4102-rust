@@ -8,6 +8,8 @@ Mønsteret gjelder langt mer enn [minne](../ordliste.md#minnehandtering): filer,
 
 ## Filhåndtering uten RAII
 
+> **Merk:** I TDT4102 bruker dere `std::ifstream` og `std::ofstream` for filhåndtering — disse er RAII-baserte og den anbefalte måten å jobbe med filer i C++. Eksempelet under bruker C-stilens `fopen`/`fclose` for å illustrere hvordan det var *før* RAII, og hvilke problemer det medførte.
+
 Med C-stilens `fopen`/`fclose` er det lett å lekke filhåndtak:
 
 ```cpp
@@ -35,16 +37,6 @@ Du kan bygge egne RAII-wrappere. Her er en enkel loggfilklasse der konstruktøre
 ```
 
 Når en `LoggFil` går ut av scope, skrives avslutningslinjen og filen lukkes — uten at brukeren av klassen trenger å tenke på det.
-
-## `lock_guard` — RAII for låser
-
-Mutex-låsing er et annet klassisk RAII-bruksområde. `std::lock_guard` tar låsen i konstruktøren og slipper den i destruktøren:
-
-```cpp
-{{#include ../../cpp/raii/main.cpp:raii_lock_guard}}
-```
-
-Uten `lock_guard` måtte du husket å kalle `mtx.unlock()` — og en glemt `unlock` kan føre til deadlock.
 
 ## Destruktørrekkefølge
 

@@ -19,7 +19,18 @@ C++17 introduserte `std::optional<T>` — en type som eksplisitt uttrykker «kan
 {{#include ../../cpp/null_sikkerhet/main.cpp:optional_eksempel}}
 ```
 
-Dette er konseptuelt likt `Option<T>` i Rust. Forskjellen er at C++ ikke *tvinger* deg til å sjekke:
+Dette er konseptuelt likt `Option<T>` i Rust. For å bruke verdien trygt sjekker du med `has_value()`:
+
+```cpp
+auto opt = finn_foerste_partall(tall, 3);
+if (opt.has_value()) {
+    std::cout << "Fant: " << opt.value() << std::endl;
+} else {
+    std::cout << "Ingen partall" << std::endl;
+}
+```
+
+Forskjellen er at C++ ikke *tvinger* deg til å sjekke — farlig kode kompilerer fint:
 
 ```cpp
 std::optional<int> opt = std::nullopt;
@@ -28,6 +39,21 @@ int farlig = *opt;       // UB — ingen unntak, ingen advarsel
 ```
 
 I Rust ville tilsvarende kode vært en kompileringsfeil — du *må* bruke `match`, `if let`, eller en metode som `unwrap_or` for å hente verdien ut av en `Option`.
+
+### Monadiske operasjoner (C++23)
+
+C++23 la til funksjonelle metoder på `std::optional`, etter mønster fra Rusts `Option`:
+
+```cpp
+{{#include ../../cpp/null_sikkerhet/main.cpp:optional_monadisk}}
+```
+
+| C++ | Rust | Beskrivelse |
+|-----|------|-------------|
+| `transform(f)` | `map(f)` | Transformerer verdien hvis den finnes |
+| `and_then(f)` | `and_then(f)` | Kjeder operasjoner som returnerer optional |
+| `or_else(f)` | `or_else(f)` | Gir alternativ `optional` hvis tom |
+| `value_or(x)` | `unwrap_or(x)` | Returnerer verdien eller en standardverdi |
 
 ## `std::expected<T, E>` (C++23)
 

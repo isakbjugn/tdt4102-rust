@@ -20,6 +20,10 @@
   - [C++](./minnehandtering/cpp.md)
   - [Rust](./minnehandtering/rust.md)
   - [Sammenlikning](./minnehandtering/sammenlikning.md)
+- [Lån og referanser](./laan_og_referanser/README.md)
+  - [C++](./laan_og_referanser/cpp.md)
+  - [Rust](./laan_og_referanser/rust.md)
+  - [Sammenlikning](./laan_og_referanser/sammenlikning.md)
 - [Smartpekere](./smartpekere/README.md)
   - [C++](./smartpekere/cpp.md)
   - [Rust](./smartpekere/rust.md)
@@ -36,10 +40,7 @@
 - [`std::variant` og `std::visit`](./tillegg/variant_og_visit.md)
 - [Trådsikkerhet](./tillegg/traader.md)
 - [`RefCell<T>` og indre mutabilitet](./tillegg/refcell.md)
-- [Levetider](./tillegg/levetider/README.md)
-  - [C++](./tillegg/levetider/cpp.md)
-  - [Rust](./tillegg/levetider/rust.md)
-  - [Sammenlikning](./tillegg/levetider/sammenlikning.md)
+- [Levetidsannotasjoner](./tillegg/levetider.md)
 
 ---
 

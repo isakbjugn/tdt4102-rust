@@ -23,6 +23,12 @@
   - [C++](./raii/cpp.md)
   - [Rust](./raii/rust.md)
   - [Sammenlikning](./raii/sammenlikning.md)
+
+---
+
+# Tillegg
+
+- [`std::variant` og `std::visit`](./tillegg/variant_og_visit.md)
 - [Levetider](./levetider/README.md)
   - [C++](./levetider/cpp.md)
   - [Rust](./levetider/rust.md)
@@ -31,4 +37,3 @@
 ---
 
 [Ordliste](./ordliste.md)
-[Tillegg: `std::variant` og `std::visit`](./tillegg/variant_og_visit.md)

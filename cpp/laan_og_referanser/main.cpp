@@ -1,14 +1,15 @@
 #include <iostream>
 #include <vector>
 
-// ANCHOR: levetid_dangling_retur
+// ANCHOR: laan_dangling_retur
 int& hent_verdi() {
     int lokal = 42;
-    return lokal; // UB: returnerer referanse til lokal variabel
+    int& ref = lokal;
+    return ref; // UB: returnerer referanse til lokal variabel
 }
-// ANCHOR_END: levetid_dangling_retur
+// ANCHOR_END: laan_dangling_retur
 
-// ANCHOR: levetid_dangling_scope
+// ANCHOR: laan_dangling_scope
 void dangling_scope() {
     int* p = nullptr;
     {
@@ -18,9 +19,9 @@ void dangling_scope() {
 
     std::cout << "  Verdi: " << *p << std::endl; // UB: lokal finnes ikke lenger
 }
-// ANCHOR_END: levetid_dangling_scope
+// ANCHOR_END: laan_dangling_scope
 
-// ANCHOR: levetid_vektor_invalidering
+// ANCHOR: laan_vektor_invalidering
 void vektor_invalidering() {
     std::vector<int> tall = {1, 2, 3};
     int& ref = tall[0];
@@ -29,7 +30,7 @@ void vektor_invalidering() {
 
     std::cout << "  ref = " << ref << std::endl; // UB: ref kan være ugyldig
 }
-// ANCHOR_END: levetid_vektor_invalidering
+// ANCHOR_END: laan_vektor_invalidering
 
 int main() {
     std::cout << "--- Dangling reference ved retur ---" << std::endl;

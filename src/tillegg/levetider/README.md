@@ -1,7 +1,7 @@
 # Levetider
 
-I de forrige kapitlene så vi hvordan [eierskap](../../ordliste.md#eierskap) og [smartpekere](../../ordliste.md#smartpeker) sørger for at minne frigjøres automatisk. Men hva skjer når du bare vil *[låne](../../ordliste.md#laan)* en verdi — bruke den uten å ta eierskap?
+I [kapitlet om lån og referanser](../../laan_og_referanser/README.md) så vi hvordan [lånesjekkeren](../../ordliste.md#laanesjekkeren) verifiserer at referanser ikke overlever dataen de peker på, og at [lånereglene](../../ordliste.md#laaneregler) forebygger datakapløp.
 
-I C++ er det programmererens ansvar å sørge for at referanser og pekere ikke overlever dataen de peker på. Bryter du denne regelen, får du [dangling pointers](../../ordliste.md#dangling-pointer) og [udefinert oppførsel](../../ordliste.md#udefinert-oppforsel) — feil som ofte først dukker opp ved kjøretid.
+I de fleste tilfeller klarer kompilatoren å utlede [levetider](../../ordliste.md#levetid) automatisk. Men noen ganger — spesielt når en funksjon returnerer en referanse som kan stamme fra flere inputparametere, eller når en struct lagrer en referanse — trenger kompilatoren hjelp. Da bruker vi [levetidsannotasjoner](../../ordliste.md#levetidsannotering).
 
-Rust løser dette med [lånesjekkeren](../../ordliste.md#laanesjekkeren), som verifiserer ved kompilering at alle referanser har gyldige [levetider](../../ordliste.md#levetid). Dette kapittelet ser på problemene som oppstår i C++, og hvordan Rusts levetidssystem forebygger dem.
+Dette tillegget dekker levetidsannotasjoner, elisjonsregler, levetider i strukturer og `'static`-levetiden.

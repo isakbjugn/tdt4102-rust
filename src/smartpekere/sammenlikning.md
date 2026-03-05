@@ -30,7 +30,7 @@ I C++ dekker `unique_ptr` altså to roller samtidig — sikker eierskap og heap-
 
 **`Box<T>` kan aldri være null.** I C++ kan en `unique_ptr` være `nullptr` (og er det etter en `std::move`). I Rust har `Box<T>` alltid en gyldig verdi — [null-sikkerhet](../ordliste.md#null-sikkerhet) er garantert av typesystemet.
 
-**Låneregler eliminerer mange smartpeker-behov.** Mye av det C++ bruker `shared_ptr` til (f.eks. å sende data til flere funksjoner) løses i Rust med vanlige referanser (`&T` / `&mut T`). Du trenger bare `Rc`/`Arc` når eierskapet faktisk må deles.
+**[Låneregler](../ordliste.md#laaneregler) eliminerer mange smartpeker-behov.** Mye av det C++ bruker `shared_ptr` til (f.eks. å sende data til flere funksjoner) løses i Rust med vanlige referanser (`&T` / `&mut T`) — se [kapitlet om lån og referanser](../laan_og_referanser/README.md). Du trenger bare `Rc`/`Arc` når eierskapet faktisk må deles.
 
 **`RefCell<T>` har ingen direkte C++-ekvivalent.** I C++ kan du alltid mutere gjennom en peker (const-correctness er rådgivende, ikke håndhevet). Rust krever `RefCell` for å bryte de vanlige lånereglene — og gir deg en kjøretidssjekk i bytte. Se [tillegget om `RefCell<T>`](../tillegg/refcell.md) for mer.
 

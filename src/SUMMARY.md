@@ -1,6 +1,7 @@
 # Innhold
 
 [Introduksjon](./introduksjon.md)
+[Om meg](./om-meg.md)
 [Hva er Rust?](./hva-er-rust.md)
 [Rust og andre språk](./rust-og-andre-sprak.md)
 

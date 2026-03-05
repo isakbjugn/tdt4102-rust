@@ -33,6 +33,8 @@ I Rust løses dette med [sumtyper](../ordliste.md#sumtype) og `match` — der hv
 
 ## Strukturerte bindinger
 
+> **C++17-funksjon:** Strukturerte bindinger er ikke eksplisitt dekket i TDT4102, men syntaksen er enkel nok til å forstå fra eksemplene under.
+
 C++17 introduserte strukturerte bindinger med `auto [x, y]` for å [destrukturere](../ordliste.md#destrukturering) tupler, par og enkle aggregater:
 
 ```cpp

@@ -31,3 +31,4 @@
 ---
 
 [Ordliste](./ordliste.md)
+[Tillegg: `std::variant` og `std::visit`](./tillegg/variant_og_visit.md)

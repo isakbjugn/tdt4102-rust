@@ -4,51 +4,33 @@
 
 | Egenskap | C++ | Rust |
 |----------|-----|------|
-| [Sumtyper](../ordliste.md#sumtype) | `std::variant<T...>` (C++17) | `enum` |
-| Dispatch | `std::visit()` + lambdaer | `match`-uttrykk |
+| [Sumtyper](../ordliste.md#sumtype) | `std::variant<T...>` (C++17)¹ | `enum` |
+| Dispatch | `std::visit()` + lambdaer¹ | `match`-uttrykk |
 | [Uttømmende sjekk](../ordliste.md#uttommende-sjekk) | Ikke håndhevet | Kompilatorgaranti |
 | [Destrukturering](../ordliste.md#destrukturering) | `auto [x, y]` (begrenset) | Full støtte i alle mønstre |
 | Vakter | Nei (må bruke `if` i lambda) | Ja (`if`-vakter i match-armer) |
-| Som uttrykk | `std::visit` returnerer verdi | `match` er et uttrykk |
+| Som uttrykk | `std::visit` returnerer verdi¹ | `match` er et uttrykk |
 | `switch` | Kun heltallstyper | `match` fungerer på alle typer |
 
-## Sumtyper: `std::variant` vs. `enum`
+*¹ Ikke dekket i TDT4102 — se [tillegget om `std::variant` og `std::visit`](../tillegg/variant_og_visit.md) for detaljer.*
 
-I C++-kapittelet så vi at `if/else if`-kjeder med strenger er feilutsatte og gir ingen kompilatorhjelp. C++ har faktisk en bedre mekanisme for dette: `std::variant` fra C++17. En `std::variant` er en [sumtype](../ordliste.md#sumtype) — en type som kan holde én av flere angitte typer:
+## Sumtyper: `enum` som datastruktur
 
-```cpp
-{{#include ../../cpp/monstermatching/main.cpp:variant_grunnleggende}}
-```
+I C++-kapittelet så vi at `if/else if`-kjeder med strenger er feilutsatte: ingen kompilatorhjelp, ingen destrukturering, og skrivefeil gir feil kjøretidsoppførsel. Grunnproblemet er at C++ ikke har noen god måte å representere «én av flere varianter med ulike data» i pensum.
 
-Rusts `enum` løser det samme, men som et språkkonsept med navngitte varianter:
+Rust har `enum` — en [sumtype](../ordliste.md#sumtype) der hver variant kan bære ulike data:
 
 ```rust
 {{#include ../../rust/src/monstermatching/mod.rs:figur_type}}
 ```
 
-Nøkkelforskjellen er at Rusts varianter har *navn* (`Sirkel`, `Rektangel`), mens C++ sine varianter identifiseres av *type* (`int`, `double`). Dette betyr at en `std::variant` ikke kan ha to varianter av samme type uten workarounds, mens en Rust-`enum` kan ha `Svar(String)` og `Feilmelding(String)` uten problem.
+Typen `Figur` uttrykker *direkte* i typesystemet at en figur er enten en sirkel (med radius), et rektangel (med bredde og høyde), eller en trekant (med tre sider). Sammenlignet med C++-versjonen der figurtypen var en streng:
 
-## Dispatch: `std::visit` vs. `match`
+- **Kompilatoren garanterer** at du bare bruker data som varianten faktisk har.
+- **Skrivefeil er umulige** — `Figur::Sirkle` gir en [kompileringsfeil](../ordliste.md#kompileringsfeil), mens `"sirkle"` i en streng ikke gjør det.
+- **Hver variant bærer nøyaktig sine data** — ingen ubrukte parametere.
 
-For å utføre ulik logikk basert på varianten bruker C++ `std::visit` med lambdaer:
-
-```cpp
-{{#include ../../cpp/monstermatching/main.cpp:visit_overloaded}}
-```
-
-I Rust er dette et `match`-uttrykk:
-
-```rust
-# use std::f64::consts::PI;
-# enum Figur {
-#     Sirkel(f64),
-#     Rektangel(f64, f64),
-#     Trekant(f64, f64, f64),
-# }
-{{#include ../../rust/src/monstermatching/mod.rs:figur_match}}
-```
-
-`std::visit` krever en `Overloaded`-template og lambdaer — tungt å lese og skrive. `match` er innebygget syntaks der du destrukturerer variantene direkte. Glemmer du en variant i Rust, får du en [kompileringsfeil](../ordliste.md#kompileringsfeil). Glemmer du en type i `std::visit`, får du en kryptisk template-feil.
+> C++ har `std::variant` (C++17) som også er en sumtype, men den er ikke del av TDT4102-pensum. Se [tillegget](../tillegg/variant_og_visit.md) for en sammenligning.
 
 ## Uttømmende sjekk
 
@@ -68,7 +50,7 @@ match figur {
 }
 ```
 
-Legger du til en ny variant i `enum`-en, vil kompilatoren peke ut *alle* steder i koden som mangler den nye varianten. C++ sin `switch` på `enum`-verdier gir kun en advarsel, og `if/else if`-kjeder gir ingenting.
+Legger du til en ny variant i `enum`-en, vil kompilatoren peke ut *alle* steder i koden som mangler den nye varianten. I C++ gir `switch` på `enum`-verdier kun en advarsel (ikke en feil), og `if/else if`-kjeder gir ingenting.
 
 ## Destrukturering
 
@@ -78,7 +60,7 @@ Legger du til en ny variant i `enum`-en, vil kompilatoren peke ut *alle* steder 
 {{#include ../../rust/src/monstermatching/mod.rs:destrukturering_tuppel}}
 ```
 
-**C++** har strukturerte bindinger, men kun på toppnivå:
+**C++** har strukturerte bindinger fra C++17, men kun på toppnivå:
 
 ```cpp
 {{#include ../../cpp/monstermatching/main.cpp:strukturerte_bindinger}}
@@ -93,6 +75,6 @@ Legger du til en ny variant i `enum`-en, vil kompilatoren peke ut *alle* steder 
 
 ## Nøkkelforskjellen
 
-C++ sine mekanismer for [mønstermatching](../ordliste.md#monstermatching) er spredt over flere separate funksjoner — `switch`, `if/else if`, `std::variant`, `std::visit`, strukturerte bindinger — som hver har sine begrensninger og ikke samarbeider sømløst.
+C++ sine mekanismer er spredt over separate verktøy — `switch`, `if/else if`, strukturerte bindinger — som hver har sine begrensninger og ikke samarbeider. Verktøyene studentene kjenner fra pensum gir ingen [uttømmende sjekk](../ordliste.md#uttommende-sjekk) og begrenset [destrukturering](../ordliste.md#destrukturering).
 
-Rust har *ett* integrert system for mønstermatching som brukes overalt: i `match`, `if let`, `while let`, `let-else`, `for`-løkker og funksjonsparametere. Alle mønstre støtter destrukturering, og `match` gir alltid [uttømmende sjekk](../ordliste.md#uttommende-sjekk). Resultatet er kode som er mer kompakt, mer lesbar og tryggere.
+Rust har *ett* integrert system for [mønstermatching](../ordliste.md#monstermatching) som brukes overalt: i `match`, `if let`, `while let`, `let-else`, `for`-løkker og funksjonsparametere. Alle mønstre støtter destrukturering, og `match` gir alltid uttømmende sjekk. Resultatet er kode som er mer kompakt, mer lesbar og tryggere.

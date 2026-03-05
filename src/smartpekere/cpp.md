@@ -50,6 +50,8 @@ Eierskap kan overføres med `std::move`:
 
 ## `weak_ptr` — svak referanse
 
+> **Ikke pensum i TDT4102:** `std::weak_ptr` er ikke dekket i kurset, men er kjekk å vite om — spesielt for å forstå hvordan sykliske referanser håndteres.
+
 `weak_ptr` observerer en `shared_ptr` uten å øke referansetelleren. Hovedbruksområdet er å bryte sykliske referanser:
 
 ```cpp

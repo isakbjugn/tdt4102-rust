@@ -36,16 +36,6 @@ Du kan bygge egne RAII-wrappere. Her er en enkel loggfilklasse der konstruktøre
 
 Når en `LoggFil` går ut av scope, skrives avslutningslinjen og filen lukkes — uten at brukeren av klassen trenger å tenke på det.
 
-## `lock_guard` — RAII for låser
-
-Mutex-låsing er et annet klassisk RAII-bruksområde. `std::lock_guard` tar låsen i konstruktøren og slipper den i destruktøren:
-
-```cpp
-{{#include ../../cpp/raii/main.cpp:raii_lock_guard}}
-```
-
-Uten `lock_guard` måtte du husket å kalle `mtx.unlock()` — og en glemt `unlock` kan føre til deadlock.
-
 ## Destruktørrekkefølge
 
 Lokale variabler destrueres i *omvendt* deklarasjonsrekkefølge (LIFO — sist inn, først ut):

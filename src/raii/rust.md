@@ -52,17 +52,6 @@ Bruk:
 
 Merk at `LoggFil` eier en `File`, som selv implementerer `Drop`. Rust dropper feltene *etter* at vår `drop()`-metode har kjørt — så vi kan fortsatt skrive til filen i destruktøren.
 
-## `MutexGuard` — RAII for låser
-
-`Mutex::lock()` returnerer en `MutexGuard` — en RAII-vakt som frigjør låsen automatisk når den går ut av scope:
-
-```rust
-# use std::sync::Mutex;
-{{#include ../../rust/src/raii/mod.rs:raii_mutex}}
-```
-
-I motsetning til C++ kan du ikke glemme å låse opp — `MutexGuard` er den *eneste* måten å få tilgang til dataen inni en `Mutex`.
-
 ## Drop-rekkefølge
 
 Akkurat som i C++ droppes lokale variabler i *omvendt* deklarasjonsrekkefølge (LIFO):

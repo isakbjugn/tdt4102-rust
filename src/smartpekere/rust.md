@@ -59,6 +59,8 @@ Akkurat som i C++ kan sykliske referanser føre til [minnelekkasjer](../ordliste
 {{#include ../../rust/src/smartpekere/mod.rs:weak_syklus_type}}
 ```
 
+> **Merk:** `struct` i Rust er analogt til `struct` i C++ — en type med navngitte felter. `impl Drop for Node` definerer en [destruktør](../ordliste.md#destruktor) som kalles automatisk når verdien går ut av [scope](../ordliste.md#scope), tilsvarende `~Node()` i C++. Detaljene rundt `Drop` er ikke viktige her — poenget er bare at vi kan se *når* nodene frigis.
+
 ```rust
 # use std::rc::{Rc, Weak};
 # #[derive(Debug)]

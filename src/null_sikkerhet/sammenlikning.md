@@ -22,12 +22,7 @@ C++17 introduserte `std::optional<T>` — en type som eksplisitt uttrykker «kan
 Dette er konseptuelt likt `Option<T>` i Rust. For å bruke verdien trygt sjekker du med `has_value()`:
 
 ```cpp
-auto opt = finn_foerste_partall(tall, 3);
-if (opt.has_value()) {
-    std::cout << "Fant: " << opt.value() << std::endl;
-} else {
-    std::cout << "Ingen partall" << std::endl;
-}
+{{#include ../../cpp/null_sikkerhet/main.cpp:optional_has_value}}
 ```
 
 Forskjellen er at C++ ikke *tvinger* deg til å sjekke — farlig kode kompilerer fint:

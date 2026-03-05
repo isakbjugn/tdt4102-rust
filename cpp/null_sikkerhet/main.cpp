@@ -79,6 +79,7 @@ int main() {
     // skriv_karakter(karakterer, "Per"); // UB — "Per" finnes ikke
 
     // Eksempel 4: std::optional
+    // ANCHOR: optional_has_value
     int tall2[] = {1, 3, 5};
     auto opt = finn_foerste_partall(tall2, 3);
     if (opt.has_value()) {
@@ -86,6 +87,7 @@ int main() {
     } else {
         std::cout << "Ingen partall funnet" << std::endl;
     }
+    // ANCHOR_END: optional_has_value
 
     // Eksempel 5: Monadiske operasjoner (C++23)
     int tall3[] = {1, 3, 5};

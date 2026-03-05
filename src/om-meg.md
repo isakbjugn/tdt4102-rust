@@ -29,6 +29,6 @@ Jobber nå i SpareBank 1 Utvikling som utvikler og teklead. Min store hobby er m
 Brukte opprinnelig Rust for å løse [Advent of Code](https://adventofcode.com/) i 2022. Fikk veldig sans for språket, og særlig fordi jeg følte samme type mestring som jeg *etter hvert* gjorde i C++.
 
 Har i ettertid brukt Rust i en rekke prosjekter, også noe jeg har vist offentlig:
-* Backenden i [Fagord.no](https://fagord.no): fagord-rust-api
+* Backenden i [Fagord.no](https://fagord.no)
 * Et Rust-kurs, holdt i SpareBank 1 Utvikling, på JavaZone 2024 og hos Statnett: [rust_chess_workshop](https://github.com/isakbjugn/rust_chess_workshop)
 * Game Boy-emulator skrevet i Rust, vist på JavaZone 2025: [Bygg din egen Game Boy med Rust!](https://2025.javazone.no/no/program/5a1bf7d5-2290-4811-be94-47055cd42e0a) / [Vimeo](https://player.vimeo.com/video/1115577320)

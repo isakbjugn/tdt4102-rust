@@ -2,13 +2,13 @@
 
 ## Lån og referanser
 
-I Rust kalles det å ta en referanse for å *[låne](../ordliste.md#laan)* en verdi. Du kan låne uforanderlig (`&T`) eller muterbart (`&mut T`). [Lånereglene](../ordliste.md#laaneregler) sier at du på ethvert tidspunkt kan ha *enten* én muterbar referanse *eller* et vilkårlig antall uforanderlige referanser — aldri begge samtidig.
+I Rust kalles det å ta en referanse for å *[låne](../../ordliste.md#laan)* en verdi. Du kan låne uforanderlig (`&T`) eller muterbart (`&mut T`). [Lånereglene](../../ordliste.md#laaneregler) sier at du på ethvert tidspunkt kan ha *enten* én muterbar referanse *eller* et vilkårlig antall uforanderlige referanser — aldri begge samtidig.
 
 ```rust
 {{#include ../../rust/src/levetider/mod.rs:levetid_laan_grunnleggende}}
 ```
 
-Disse reglene håndheves av [lånesjekkeren](../ordliste.md#laanesjekkeren) ved kompilering. Prøver du å bryte dem, får du en [kompileringsfeil](../ordliste.md#kompileringsfeil) — ikke [udefinert oppførsel](../ordliste.md#udefinert-oppforsel) ved kjøretid.
+Disse reglene håndheves av [lånesjekkeren](../../ordliste.md#laanesjekkeren) ved kompilering. Prøver du å bryte dem, får du en [kompileringsfeil](../../ordliste.md#kompileringsfeil) — ikke [udefinert oppførsel](../../ordliste.md#udefinert-oppforsel) ved kjøretid.
 
 ## Lånesjekkeren i aksjon
 
@@ -23,7 +23,7 @@ fn hent_referanse() -> &String {
 }
 ```
 
-Rust nekter å kompilere dette. Referansen ville pekt på en verdi som destrueres når funksjonen returnerer — en [dangling pointer](../ordliste.md#dangling-pointer) som aldri oppstår.
+Rust nekter å kompilere dette. Referansen ville pekt på en verdi som destrueres når funksjonen returnerer — en [dangling pointer](../../ordliste.md#dangling-pointer) som aldri oppstår.
 
 **Referanse inn i avsluttet scope:**
 
@@ -36,7 +36,7 @@ let r;
 println!("{r}");
 ```
 
-Lånesjekkeren ser at `lokal` går ut av [scope](../ordliste.md#scope) før `r` brukes, og nekter å kompilere.
+Lånesjekkeren ser at `lokal` går ut av [scope](../../ordliste.md#scope) før `r` brukes, og nekter å kompilere.
 
 **Vektor-invalidering:**
 
@@ -59,7 +59,7 @@ fn lengste(s1: &str, s2: &str) -> &str {
 }
 ```
 
-Kompilatoren vet ikke om returverdien følger [levetiden](../ordliste.md#levetid) til `s1` eller `s2`. Løsningen er en [levetidsannotering](../ordliste.md#levetidsannotering) — en eksplisitt markering av at referansene henger sammen:
+Kompilatoren vet ikke om returverdien følger [levetiden](../../ordliste.md#levetid) til `s1` eller `s2`. Løsningen er en [levetidsannotering](../../ordliste.md#levetidsannotering) — en eksplisitt markering av at referansene henger sammen:
 
 ```rust
 {{#include ../../rust/src/levetider/mod.rs:levetid_annotasjon}}
@@ -71,7 +71,7 @@ Annotasjonen `'a` sier: «returverdien lever minst like lenge som *begge* inputr
 
 ## Levetidselisjon
 
-I mange vanlige tilfeller trenger du ikke skrive levetidsannotasjoner eksplisitt. Rust har tre [elisjonsregler](../ordliste.md#levetidselisjon) som dekker de fleste funksjoner:
+I mange vanlige tilfeller trenger du ikke skrive levetidsannotasjoner eksplisitt. Rust har tre [elisjonsregler](../../ordliste.md#levetidselisjon) som dekker de fleste funksjoner:
 
 1. Hver inputreferanse får sin egen levetidsparameter.
 2. Hvis det er nøyaktig én inputlevetid, brukes den for alle outputreferanser.

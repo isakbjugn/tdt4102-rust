@@ -29,10 +29,10 @@
 # Tillegg
 
 - [`std::variant` og `std::visit`](./tillegg/variant_og_visit.md)
-- [Levetider](./levetider/README.md)
-  - [C++](./levetider/cpp.md)
-  - [Rust](./levetider/rust.md)
-  - [Sammenlikning](./levetider/sammenlikning.md)
+- [Levetider](./tillegg/levetider/README.md)
+  - [C++](./tillegg/levetider/cpp.md)
+  - [Rust](./tillegg/levetider/rust.md)
+  - [Sammenlikning](./tillegg/levetider/sammenlikning.md)
 
 ---
 

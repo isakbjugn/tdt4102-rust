@@ -1,6 +1,6 @@
 # Introduksjon
 
-Et undervisningsprosjekt for å utforske grunnleggende C++-konsepter, med fokus på hvordan disse sammenlikner med moderne språk som Rust.
+En forelesning til NTNU-emnet TDT4102 Prosedyre- og objektorientert programmering. Formålet er å utforske grunnleggende C++-konsepter, med fokus på hvordan disse kan sammenliknes med moderne språk som Rust.
 
 ## Konsepter
 
@@ -11,3 +11,6 @@ Prosjektet tar for seg sentrale konsepter i C++:
 - **Minnehåndtering** - manuell [allokering](./ordliste.md#allokering) med `new`/`delete` vs. Rusts [eierskap-modell](./ordliste.md#eierskap)
 - **Lån og referanser** - dangling pointers og udefinert oppførsel i C++ vs. Rusts [lånesjekker](./ordliste.md#laanesjekkeren) og [låneregler](./ordliste.md#laaneregler)
 - **Smartpekere** - `unique_ptr`, `shared_ptr`, `weak_ptr` vs. Rusts `Box`, `Rc`, `Arc`
+
+> **Ikke fokus på `struct` eller `Trait`**  
+> Ettersom forelesningene enda ikke har kommet til konseptet *arv* i C++, har jeg heller ikke dekket objektorientering eller Rusts `trait`-system i denne forelesningen.

@@ -8,6 +8,8 @@ Mønsteret gjelder langt mer enn [minne](../ordliste.md#minnehandtering): filer,
 
 ## Filhåndtering uten RAII
 
+> **Merk:** I TDT4102 bruker dere `std::ifstream` og `std::ofstream` for filhåndtering — disse er RAII-baserte og den anbefalte måten å jobbe med filer i C++. Eksempelet under bruker C-stilens `fopen`/`fclose` for å illustrere hvordan det var *før* RAII, og hvilke problemer det medførte.
+
 Med C-stilens `fopen`/`fclose` er det lett å lekke filhåndtak:
 
 ```cpp

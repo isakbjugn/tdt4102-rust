@@ -64,7 +64,7 @@ Sjekker lar deg kombinere strukturell matching med vilkårlige betingelser. I C+
 {{#include ../../rust/src/monstermatching/mod.rs:let_else}}
 ```
 
-Uten `let-else` måtte du brukt en `match` eller `if let` med nesting. `let-else` holder koden flat og lesbar — den «glade stien» fortsetter rett frem, mens feilhåndteringen skjer i `else`-blokken.
+Uten `let-else` måtte du brukt en `match` eller `if let` med nesting. `let-else` holder koden flat og lesbar — «solskinnsscenarioet» fortsetter rett frem, mens feilhåndteringen skjer i `else`-blokken.
 
 ## `while let`
 

@@ -73,7 +73,7 @@ fn match_vakter() {
     };
     println!("{tall} er {beskrivelse}");
 
-    // Vakter er nyttige for a kombinere monster med ekstra betingelser
+    // Sjekker er nyttige for a kombinere monster med ekstra betingelser
     let verdi: Option<i32> = Some(-5);
     match verdi {
         Some(n) if n > 0 => println!("Positivt tall: {n}"),

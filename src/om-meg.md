@@ -7,6 +7,7 @@ Isak Kyrre Lichtwarck Bjugn
 ## Bakgrunn
 Studerte selv på NTNU fra 2015:
 * Siving i Nanoteknologi, 2015–2020
+* Utveksling ved University of California, Berkeley, 2018–2019
 * Siving i Entreprenørskap, 2020–2022
 
 Jobber nå i SpareBank 1 Utvikling som utvikler og teklead. Min store hobby er mannskor, og jeg synger i Den norske Studentersangforening.

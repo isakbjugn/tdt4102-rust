@@ -10,7 +10,7 @@ Rust har ikke `null`. I stedet bruker Rust typesystemet for å uttrykke at en ve
 {{#include ../../rust/src/null_sikkerhet/mod.rs:option_grunnleggende}}
 ```
 
-## Pattern matching
+## Mønster-matching
 
 `match` tvinger deg til å håndtere *begge* tilfeller. `if let` er en kortform når du bare bryr deg om ett:
 
@@ -52,10 +52,7 @@ println!("{}", tall + 1); // Kompileringsfeil! Option<i32> er ikke i32.
 `?`-operatoren gjør feilhåndtering kort og idiomatisk. Den returnerer verdien ved `Ok`, eller propagerer feilen videre ved `Err`:
 
 ```rust
-# fn result_sporsmalstegn() -> Result<(), String> {
 {{#include ../../rust/src/null_sikkerhet/mod.rs:result_sporsmalstegn}}
-# Ok(())
-# }
 ```
 
 Uten `?` måtte vi skrevet en `match` for hvert steg — `?`-operatoren fjerner denne boilerplate-koden og gjør det like enkelt å håndtere feil som å ignorere dem.

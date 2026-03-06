@@ -51,7 +51,7 @@ fn option_metoder() {
     let dobbel = kanskje_tall.map(|x| x * 2);
     println!("dobbel = {:?}", dobbel); // Some(10)
 
-    // Kjed operasjoner som selv returnerer Option
+    // Lenk sammen operasjoner som selv returnerer Option
     let tekst: Option<&str> = Some("42");
     let parsed = tekst.and_then(|t| t.parse::<i32>().ok());
     println!("parsed = {:?}", parsed); // Some(42)
@@ -87,9 +87,15 @@ fn result_sporsmalstegn() -> Result<(), String> {
             .map_err(|_| format!("Kunne ikke parse '{tekst}' som tall"))?;
         Ok(tall * 2)
     }
+    match parse_og_doble("21") {
+        Ok(resultat) => println!("Dobbelt av 21 er {resultat}"),
+        Err(feil) => println!("Feil: {feil}"),
+    }
+    match parse_og_doble("abc") {
+        Ok(resultat) => println!("Dobbelt av abc er {resultat}"),
+        Err(feil) => println!("Feil: {feil}"),
+    }
 
-    println!("{}", parse_og_doble("21")?); // 42
-    // parse_og_doble("abc") ville returnert Err
     // ANCHOR_END: result_sporsmalstegn
     Ok(())
 }

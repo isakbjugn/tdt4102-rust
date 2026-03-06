@@ -11,7 +11,7 @@ La oss plassere Rust i landskapet av programmeringsspråk med noen tabeller.
 | **Minnesikker** | **Rust** | Java, Go, C#, Python, Haskell |
 | **Ikke minnesikker** | C, C++ | |
 
-Rust er alene i øvre venstre kvadrant — det eneste utbredte språket som er minnesikkert uten søppelsamler. Dette er mulig takket være *[eierskapsmodellen](ordliste.md#eierskap)*: kompilatoren sporer hvem som eier hver verdi, og frigjør minne automatisk når eieren går ut av [scope](ordliste.md#scope). Ingen garbage collector, ingen manuell `free`.
+Rust er alene i øvre venstre kvadrant — det eneste utbredte språket som er minnesikkert uten [søppelsamler (eng. _garbage collector_)](ordliste.md#soppelsamler). Dette er mulig takket være *[eierskapsmodellen](ordliste.md#eierskap)*: kompilatoren sporer hvem som eier hver verdi, og frigjør minne automatisk når eieren går ut av [scope](ordliste.md#scope). Ingen søppelsamler, ingen manuell `free`.
 
 ## Typesystem
 
@@ -33,10 +33,10 @@ Rust gir deg høynivå-ergonomi — iteratorer, closures, pattern matching, gene
 
 ## Null-sikkerhet
 
-|  | **Null finnes i språket** | **Null finnes ikke** |
-|---|---|---|
-| **Kompilator håndhever håndtering** | Kotlin, Swift | **Rust**, Haskell |
-| **Kompilator håndhever ikke** | C, C++, Java, Go, JavaScript | |
+|  | **Null(peker) finnes i språket** | **Null finnes ikke** |
+|---|----------------------------------|---|
+| **Kompilator håndhever håndtering** | Kotlin, Swift                    | **Rust**, Haskell |
+| **Kompilator håndhever ikke** | C, C++, Java, Go, JavaScript     | |
 
 Rust har ikke `null`. I stedet bruker det `Option<T>`, som enten er `Some(verdi)` eller `None`. Kompilatoren tvinger deg til å håndtere begge variantene — du kan ikke «glemme» å sjekke for manglende verdier.
 

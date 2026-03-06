@@ -128,7 +128,7 @@ void strukturerte_bindinger() {
         std::cout << navn << ": " << score << std::endl;
     }
 
-    // Begrensning: kun toppniva - ingen nestede monstre
+    // Begrensning: kun toppniva - ingen nøstede mønstre
     // auto [[a, b], c] = ...; // Kompileringsfeil!
 }
 // ANCHOR_END: strukturerte_bindinger
